@@ -11,15 +11,19 @@ void mostrarMenu(int argc, char* argv[]) {
     std::cout << " 3.Salir\n";
 }
 
-void procesarOpcion(int argc, char* argv[]){
+void procesarOpcion(int argc, char* argv[], JuegoDatos& datos){
     int opcion;
     std::cout << "\nIngrese una opcion: ";
     std::cin >> opcion;
 
+    datos.inicio = std::atoi(argv[1]);
+    datos.fin = std::atoi(argv[2]);
+    datos.numContador = (datos.fin - datos.inicio)/3;
+
     switch (opcion)
     {
     case 1: 
-        juegoFacil(argc, argv);
+        juegoFacil(argv, datos);
         break;
 
     case 2: 
@@ -35,38 +39,32 @@ void procesarOpcion(int argc, char* argv[]){
     }
 }
 
-void juegoFacil(int argc, char* argv[]){
+void juegoFacil(char* argv[], JuegoDatos datos){
 
-    int inicio = std::atoi(argv[1]);
-    int fin = std::atoi(argv[2]);
+    datos.numAleatorio = obtenerAleatorio(datos.fin, datos.inicio);
 
-    int numAleatorio = obtenerAleatorio(fin, inicio);
+    std::cout << "Quedan " << datos.numContador << " intentos\n";
 
-    int numContador = (fin - inicio)/3;
-
-    int numAdivina;
-
-    std::cout << "Quedan " << numContador << " intentos\n";
-
-    while (numContador > 0){
+    while (datos.numContador > 0){
 
         std::cout << "Ingrese un numero: ";
-        std::cin >> numAdivina;
+        std::cin >> datos.numAdivina;
 
-        if (numAdivina < numAleatorio){
-            numContador--;
-            std::cout << "\nEl numero es mayor." << " Quedan " << numContador << " intentos\n";
-        }else if (numAdivina > numAleatorio){
-            numContador--;
-            std::cout << "\nEl numero es menor." << " Quedan " << numContador << " intentos\n";
+        if (datos.numAdivina < datos.numAleatorio){
+            datos.numContador--;
+            std::cout << "\nEl numero es mayor." << " Quedan " << datos.numContador << " intentos\n";
+        }else if (datos.numAdivina > datos.numAleatorio){
+            datos.numContador--;
+            std::cout << "\nEl numero es menor." << " Quedan " << datos.numContador << " intentos\n";
         }else{
             std::cout << "\nFelicidades! Haz adivinado el numero\n";
             break;
         }
-    } if (numContador <= 0){
+    } if (datos.numContador <= 0){
         std::cout << "Se acabaron los intentos, haz perdido";
     }
 }
+
 
 int obtenerAleatorio(int fin, int inicio){
 
