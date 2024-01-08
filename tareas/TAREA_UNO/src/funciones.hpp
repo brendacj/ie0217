@@ -16,6 +16,7 @@ struct JuegoDatos {
 void mostrarMenu(int argc, char* argv[]);
 void procesarOpcion(int argc, char* argv[], JuegoDatos& datos);
 void juegoFacil(char* argv[], JuegoDatos datos);
+void juegoDificil(JuegoDatos datos);
 int obtenerAleatorio(int fin, int inicio);
 
 #endif

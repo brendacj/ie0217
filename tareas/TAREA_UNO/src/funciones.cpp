@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 void mostrarMenu(int argc, char* argv[]) {
     std::cout << "\n --- Adivina el entero ---\n";
@@ -27,7 +28,7 @@ void procesarOpcion(int argc, char* argv[], JuegoDatos& datos){
         break;
 
     case 2: 
-        std::cout << "\nModo dificil\n";
+        juegoDificil(datos);
         break;
 
     case 3: 
@@ -42,6 +43,7 @@ void procesarOpcion(int argc, char* argv[], JuegoDatos& datos){
 void juegoFacil(char* argv[], JuegoDatos datos){
 
     datos.numAleatorio = obtenerAleatorio(datos.fin, datos.inicio);
+    std::cout << datos.numAleatorio;
 
     std::cout << "Quedan " << datos.numContador << " intentos\n";
 
@@ -65,6 +67,42 @@ void juegoFacil(char* argv[], JuegoDatos datos){
     }
 }
 
+void juegoDificil(JuegoDatos datos){
+    datos.numAleatorio = obtenerAleatorio(datos.fin, datos.inicio);
+    std::cout << datos.numAleatorio;
+
+    std::cout << "Quedan " << datos.numContador << " intentos\n";
+
+    while (datos.numContador > 0){
+
+        std::cout << "Ingrese un numero: ";
+        std::cin >> datos.numAdivina;
+
+        int diferencia = std::abs(datos.numAdivina - datos.numAleatorio);
+
+        if (datos.numAdivina == datos.numAleatorio){
+            std::cout << "\nFelicidades! Haz adivinado el numero\n";
+            break;
+
+        }else if (diferencia <= (datos.fin - datos.inicio) / 9){
+            datos.numContador--;
+            std::cout << "\nHirviendo." << " Quedan " << datos.numContador << " intentos\n";
+
+        }else if (diferencia <= (datos.fin - datos.inicio) / 4){
+            datos.numContador--;
+            std::cout << "\nCaliente." << " Quedan " << datos.numContador << " intentos\n";
+
+        }else if (diferencia <= (datos.fin - datos.inicio) / 2){
+            datos.numContador--;
+            std::cout << "\nFrio." << " Quedan " << datos.numContador << " intentos\n";
+        }else{
+            datos.numContador--;
+            std::cout << "\nCongelado." << " Quedan " << datos.numContador << " intentos\n";
+        }
+    } if (datos.numContador <= 0){
+        std::cout << "Se acabaron los intentos, haz perdido";
+    }
+}
 
 int obtenerAleatorio(int fin, int inicio){
 
