@@ -40,10 +40,7 @@ void juegoFacil(int argc, char* argv[]){
     int inicio = std::atoi(argv[1]);
     int fin = std::atoi(argv[2]);
 
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-    int numAleatorio = std::rand() % (fin - inicio + 1) + inicio;
-
+    int numAleatorio = obtenerAleatorio(fin, inicio);
 
     int numContador = (fin - inicio)/3;
 
@@ -69,4 +66,11 @@ void juegoFacil(int argc, char* argv[]){
     } if (numContador <= 0){
         std::cout << "Se acabaron los intentos, haz perdido";
     }
+}
+
+int obtenerAleatorio(int fin, int inicio){
+
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    return (std::rand() % (fin - inicio + 1) + inicio);
 }
