@@ -1,5 +1,43 @@
 # TAREA UNO
 ## Intrucciones de ejecución
+
+### Requisitos previos
+- Asegúrarse de tener instalado un compilador de C++ (por ejemplo, g++).
+
+- En caso de OS Windows asegúrarse de tener instalado una herramienta (MinGW) para acceder al Make.
+
+- Las respuestas a las preguntas teóricas se encuentran más abajo en el README.md.
+
+### Acceso 
+1. Al encontrarse en la carpeta TAREA_UNO ejecute el comando:
+
+    ```
+   cd .\src\
+   ```
+
+### Compilación
+
+1. Ejecuta el siguiente comando para compilar el programa:
+
+   ```
+   make build
+   ```
+2. Ejecuta el siguiente comando para ejecutar el programa:
+
+    ```
+   make run
+   ```
+3. También se puede usar el siguiente comando para compilar y ejecutar el programa al mismo tiempo:
+
+    ```
+   make all
+   ```
+4. Una vez finalice el programa ejecute el siguiente comando para borrar los ejecutables generados:
+
+    ```
+   make clean
+   ```
+
 ## Teoría programación en C++
 1. **¿Cuál es la principal diferencia entre C y C++?**
 
@@ -36,7 +74,7 @@
 
 1. **¿Qué es un puntero y cómo se utiliza? Explique con un ejemplo de la vida real.**
 
-    Un puntero es una variable que almacena la dirección de memoria de otra, es decir, apunta la dirección en la memoria de dicha variable. 
+    Un puntero es una variable que almacena la dirección de memoria de otra, es decir, apunta la dirección en la memoria de dicha variable. Un ejemplo que simboliza los punteros en la vida real es el de los afiches de las bibliotecas, que tienen la dirección de donde se ubica el libro, el puntero sería el afiche y el libro la variable.
 
 1. **¿Una variable global almacena el valor original de una operación en una función o una
  copia? Explique su respuesta. Explique por qué se elige usar variables globales en lugar
@@ -46,7 +84,7 @@
 
 1. **Investigue y explique tres métodos comunes de la biblioteca string en C++.**
 
-    - _size o length_: Este método de la biblioteca string devolverá el tamaño de la cadena a al que se aplique.
+    - _size o length_: Este método de la biblioteca string devolverá el tamaño de la cadena a la que se aplique.
 
     - _operador[ ]_: Este es uno de los métodos más utilizados y se utiliza para obtener un carácter de la cadena mediante su posición.
 
@@ -60,7 +98,7 @@
 
 1. **¿Es permitido almacenar funciones en una estructura en C++? En el caso de los datos, ¿se pueden encapsular en miembros privados y públicos dentro de una estructura? Explique su respuesta.**
 
-    Sí es permitido almacenar funciones en las estructuras, estas pueden ser accedidas de igual manera con un punto por instancias del tipo estructura y se ejecutan con normalidad. Por otro lado, los miembros de las estructuras con normalmente públicos, pero se pueden modificar su características de visualización con las palabras claves "public" o "privade", en donde intuitivamente los miembros en la sección public podrán ser accedidos en todo el código fuente, mientras que los privade son visibles solamente dentro del mismo ensamblado.
+    Sí es permitido almacenar funciones en las estructuras, estas pueden ser accedidas de igual manera con un punto por instancias del tipo estructura y se ejecutan con normalidad. Por otro lado, los miembros de las estructuras son normalmente públicos, pero se pueden modificar su características de visualización con las palabras claves "public" o "privade", en donde intuitivamente los miembros en la sección public podrán ser accedidos en todo el código fuente, mientras que los privade son visibles solamente dentro del mismo ensamblado.
 
     Obtenido de: [Definición y consumo de clases y estructuras (C++/CLI)](https://learn.microsoft.com/es-es/cpp/dotnet/how-to-define-and-consume-classes-and-structs-cpp-cli?view=msvc-170)
 
@@ -179,9 +217,9 @@
 
     - _-I(Include)_: Se utiliza para especificar directorios en los cuales el compilador debe buscar archivos de encabezado, vincular el programa con una biblioteca en general.
 
-    - _-c(Compile Only)_: Se usa para obtener el código complilado sin nigún enlace-
+    - _-c(Compile Only)_: Se usa para obtener el código complilado sin nigún enlace.
 
-    -_-o(Output)_: Se utiliza para especificar el nombre del ejecutable (O cualquier otro archivo generado durante la compilación).
+    -_-(Output)_: Se utiliza para especificar el nombre del ejecutable (O cualquier otro archivo generado durante la compilación).
 
 
 1. **¿Cómo se definen y se utilizan las variables en un Makefile? ¿Qué utilidad tienen?**
@@ -189,7 +227,7 @@
     Se utilizan para almacenar valores que se usan en multiples partes del archivo, facilita la modificación y personalización del Makefile sin tener que cambiar cada instancia de un valor en todo el archivo.
 1. **¿Qué utilidad tiene un @ en un Makefile?**
 
-    Representa el target dentro de la estructura de una una regla.
+    Se utiliza como un prefijo para evitar que la regla que le sigue se imprima en la salida estándar. Es una forma de hacer que la ejecución de esa regla sea silenciosa, útil para hacer que el proceso de compilación sea más limpio y fácil de leer.
 1. **¿Para qué se utiliza .PHONY en un Makefile?**
 
-    Targets que no representan archivos físicos, sino acciones que deben realiarse.
+    Se utiliza para indicar al Make que ciertos targets no representan archivos reales y, por lo tanto, no debe tratar de comparar sus fechas de modificación con las de archivos existentes y por ejemplo, ejecutarlos aunque exista otro archivo con el mismo nombre.
