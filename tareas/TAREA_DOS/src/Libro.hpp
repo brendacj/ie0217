@@ -7,11 +7,24 @@ using namespace std;
 
 class Libro : public MaterialLectura {
     public:
-        //Coche(int velocidad, int numPuertas);
-        void tamanoLibro();
+        Libro();
+        Libro(
+            string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string editorial,
+            string genero,
+            string estado,
+            int cantiHojas,
+            double precio
+        );
+
+        string tamanoLibro(int cantiHojas);
         void imprimirLibro();
+
+        string tamano;
 
 
 };
-
 #endif

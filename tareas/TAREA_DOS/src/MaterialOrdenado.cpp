@@ -1,12 +1,53 @@
 # include "MaterialOrdenado.hpp"
 
-
-void MaterialOrdenado::eliminarMaterial(){
-    cout << "Eliminar";
+MaterialOrdenado::MaterialOrdenado() {
+    // No hay ninguna inicialización específica en este momento
 }
 
 void MaterialOrdenado::agregarMaterial(){
-    cout << "Agregar";
+    string titulo, grupo, material, autor, editorial, genero, estado;
+    int cantiHojas;
+    double precio;
+
+    cout << "Ingrese el titulo: " << endl;
+    cin >> titulo;
+
+    cout << "Ingrese el autor: " << endl;
+    cin >> autor;
+
+    cout << "Ingrese el genero: " << endl;
+    cin >> genero;
+
+    cout << "Ingrese el estado: " << endl;
+    cin >> estado;
+
+    cout << "Ingrese el precio: " << endl;
+    cin >> precio;
+
+    cout << "Ingrese el grupo: " << endl;
+    cin >> grupo;
+
+    cout << "Ingrese el tipo de material: " << endl;
+    cin >> material;
+
+    if (material == "libro"){
+        cout << "Ingrese la editorial: " << endl;
+        cin >> editorial;
+
+        cout << "Ingrese la cantidad de hojas: " << endl;
+        cin >> cantiHojas;
+
+        vectorDePunterosLibro.push_back(new Libro(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
+        
+    }
+    for (Libro* objeto : vectorDePunterosLibro) {
+    cout << objeto->tamano << " ";
+    }
+    cout << endl;
+}
+
+void MaterialOrdenado::eliminarMaterial(){
+    cout << "Eliminar";
 }
 
 void MaterialOrdenado::buscarMaterial(){
