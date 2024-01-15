@@ -20,7 +20,15 @@ class Podcast : public MaterialAudiovisual {
         );
         
         string tamanoPodcast(int duracion);
-        void imprimirPodcast();
+
+        void imprimirPodcast(string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string genero,
+            string estado,
+            string tamano,
+            double precio);
 
         string tamano;
 

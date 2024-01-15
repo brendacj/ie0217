@@ -64,7 +64,7 @@ void MaterialOrdenado::agregarMaterial(){
 
     }
     for (Libro* objeto : vectorDePunterosLibro) {
-    cout << objeto->tamano << " ";
+    cout << objeto->titulo<< " ";
     }
     cout << endl;
 
@@ -88,6 +88,46 @@ void MaterialOrdenado::eliminarMaterial(){
     cout << "Eliminar";
 }
 
-void MaterialOrdenado::buscarMaterial(){
-    cout << "Buscar";
+void MaterialOrdenado::buscarMaterial(string material){
+    if (material == "libro"){
+        for (Libro* objeto : vectorDePunterosLibro){
+            objeto->imprimirLibro(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->editorial, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    } else if (material == "noticia"){
+        for (Noticia* objeto : vectorDePunterosNoticia){
+            objeto->imprimirNoticia(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->editorial, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    } else if (material == "pelicula"){
+        for (Pelicula* objeto : vectorDePunterosPelicula){
+            objeto->imprimirPelicula(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    } else {
+        for (Podcast* objeto : vectorDePunterosPodcast){
+            objeto->imprimirPodcast(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    }
+}
+
+void MaterialOrdenado::buscarTitulo(string titulo){
+    for (Libro* objeto : vectorDePunterosLibro){
+        if (objeto->titulo == titulo){
+            objeto->imprimirLibro(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->editorial, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    for (Noticia* objeto : vectorDePunterosNoticia)
+        if (objeto->titulo == titulo){
+            objeto->imprimirNoticia(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->editorial, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    }
+    for (Pelicula* objeto : vectorDePunterosPelicula){
+       if (objeto->titulo == titulo){
+           objeto->imprimirPelicula(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        } 
+    }
+    for (Podcast* objeto : vectorDePunterosPodcast){
+        if (objeto->titulo == titulo){
+           objeto->imprimirPodcast(objeto->titulo, objeto->grupo, objeto->material, objeto->autor, objeto->genero, objeto->estado, objeto->tamano, objeto->precio);
+        }
+    }
+
+    
 }

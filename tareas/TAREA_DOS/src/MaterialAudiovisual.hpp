@@ -17,7 +17,6 @@ class MaterialAudiovisual {
             double precio
         );
 
-    protected:
         string titulo;
         string grupo;
         string material;
@@ -26,6 +25,16 @@ class MaterialAudiovisual {
         string estado;
         int duracion;
         double precio;
+    /*
+    protected:
+        string titulo;
+        string grupo;
+        string material;
+        string autor;
+        string genero;
+        string estado;
+        int duracion;
+        double precio;*/
 
 };
 

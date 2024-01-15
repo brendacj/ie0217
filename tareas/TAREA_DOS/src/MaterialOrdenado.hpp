@@ -15,7 +15,8 @@ class MaterialOrdenado : public Libro, public Noticia, public Pelicula, public P
         MaterialOrdenado();
         void eliminarMaterial();
         void agregarMaterial();
-        void buscarMaterial();
+        void buscarMaterial(string material);
+        void buscarTitulo(string titulo);
     protected:
         std::vector<Libro*> vectorDePunterosLibro; 
         std::vector<Noticia*> vectorDePunterosNoticia;

@@ -18,7 +18,6 @@ class MaterialLectura {
             double precio
         );
 
-    protected:
         string titulo;
         string grupo;
         string material;
@@ -28,6 +27,16 @@ class MaterialLectura {
         string estado;
         int cantiHojas;
         double precio;
+
+    /*protected:
+        string grupo;
+        string material;
+        string autor;
+        string editorial;
+        string genero;
+        string estado;
+        int cantiHojas;
+        double precio;*/
 
 };
 

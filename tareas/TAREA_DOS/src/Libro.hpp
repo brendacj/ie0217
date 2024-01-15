@@ -21,7 +21,15 @@ class Libro : public MaterialLectura {
         );
 
         string tamanoLibro(int cantiHojas);
-        void imprimirLibro();
+        void imprimirLibro(string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string editorial,
+            string genero,
+            string estado,
+            string tamano,
+            double precio);
 
         string tamano;
 

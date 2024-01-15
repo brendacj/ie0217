@@ -27,6 +27,15 @@ string Pelicula::tamanoPelicula(int duracion){
     } 
 }
 
-void Pelicula::imprimirPelicula(){
-    cout << "imprimir pelicula";
+void Pelicula::imprimirPelicula(
+    string titulo,
+    string grupo,
+    string material,
+    string autor,
+    string genero,
+    string estado,
+    string tamano,
+    double precio
+    ){
+    cout << "Titulo: " << titulo<< " Grupo: "<< grupo << " Material: "<< material << " Autor: "<< autor << " Genero: "<< genero << " Estado: "<< estado << " Tamaño: "<< tamano << " Precio: "<< precio <<endl;
 }

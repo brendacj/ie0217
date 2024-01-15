@@ -28,6 +28,7 @@ void mostrarMenu() {
 
 void procesarOpcion(){
     int opcion;
+    string tipo;
     // Solicitar al usuario que elija una opción
     std::cout << "\nIngrese una opcion: ";
     std::cin >> opcion;
@@ -39,13 +40,23 @@ void procesarOpcion(){
         break;
 
     case 2: 
-        // Iniciar juego difícil
         cout << "Opcion 2";
         break;
 
     case 3: 
-        // Iniciar juego difícil
-        cout << "Opcion 3";
+        cout << "\n¿Por cual medio desea buscar? (T: Titulo, M: Material)\n";
+        cin >> tipo;
+        if (tipo == "M"){
+            string material;
+            cout << "Ingrese el material que desea buscar: ";
+            cin >> material;
+            miMaterial.buscarMaterial(material);
+        } else{
+            string titulo;
+            cout << "Ingrese el titulo que desea buscar: ";
+            cin >> titulo;
+            miMaterial.buscarTitulo(titulo);
+        }
         break;
 
     case 4: 

@@ -21,7 +21,15 @@ class Noticia : public MaterialLectura {
         );
 
         string tamanoNoticia(int cantiHojas);
-        void imprimirNoticia();
+        void imprimirNoticia(string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string editorial,
+            string genero,
+            string estado,
+            string tamano,
+            double precio);
 
         string tamano;
 

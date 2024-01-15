@@ -29,6 +29,16 @@ string Libro::tamanoLibro(int cantiHojas){
     }  
 }
 
-void Libro::imprimirLibro(){
-    cout << "imprimir libro";
+void Libro::imprimirLibro(
+    string titulo,
+    string grupo,
+    string material,
+    string autor,
+    string editorial,
+    string genero,
+    string estado,
+    string tamano,
+    double precio
+    ){
+    cout << "Titulo: " << titulo<< " Grupo: "<< grupo << " Material: "<< material << " Autor: "<< autor << " Editorial: "<< editorial << " Genero: "<< genero << " Estado: "<< estado << " Tamaño: "<< tamano << " Precio: "<< precio <<endl;
 }

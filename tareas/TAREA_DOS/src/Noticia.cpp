@@ -29,6 +29,16 @@ string Noticia::tamanoNoticia(int cantiHojas){
     }  
 }
 
-void Noticia::imprimirNoticia(){
-    cout << "imprimir noticia";
+void Noticia::imprimirNoticia(
+    string titulo,
+    string grupo,
+    string material,
+    string autor,
+    string editorial,
+    string genero,
+    string estado,
+    string tamano,
+    double precio
+    ){
+    cout << "Titulo: " << titulo<< " Grupo: "<< grupo << " Material: "<< material << " Autor: "<< autor << " Editorial: "<< editorial << " Genero: "<< genero << " Estado: "<< estado << " Tamaño: "<< tamano << " Precio: "<< precio <<endl;
 }

@@ -28,6 +28,15 @@ string Podcast::tamanoPodcast(int duracion){
     } 
 }
 
-void Podcast::imprimirPodcast(){
-    cout << "imprimir Podcast";
+void Podcast::imprimirPodcast(
+    string titulo,
+    string grupo,
+    string material,
+    string autor,
+    string genero,
+    string estado,
+    string tamano,
+    double precio
+    ){
+    cout << "Titulo: " << titulo<< " Grupo: "<< grupo << " Material: "<< material << " Autor: "<< autor << " Genero: "<< genero << " Estado: "<< estado << " Tamaño: "<< tamano << " Precio: "<< precio <<endl;
 }

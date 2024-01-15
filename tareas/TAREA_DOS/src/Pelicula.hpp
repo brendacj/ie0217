@@ -20,7 +20,14 @@ class Pelicula : public MaterialAudiovisual {
         );
         
         string tamanoPelicula(int duracion);
-        void imprimirPelicula();
+        void imprimirPelicula(string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string genero,
+            string estado,
+            string tamano,
+            double precio);
 
         string tamano;
 
