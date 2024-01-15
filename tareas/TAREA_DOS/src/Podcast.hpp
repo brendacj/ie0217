@@ -7,9 +7,22 @@ using namespace std;
 
 class Podcast : public MaterialAudiovisual {
     public:
+        Podcast();
+        Podcast(
+            string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string genero,
+            string estado,
+            int duracion,
+            double precio
+        );
         
-        void tamanoPodcast();
+        string tamanoPodcast(int duracion);
         void imprimirPodcast();
+
+        string tamano;
 
 
 };

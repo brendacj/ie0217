@@ -6,17 +6,26 @@ using namespace std;
 
 class MaterialAudiovisual {
     public:
-        MaterialAudiovisual(int velocidad);
+        MaterialAudiovisual(
+            string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string genero,
+            string estado,
+            int duracion,
+            double precio
+        );
 
     protected:
-        int titulo;
-        int grupo;
-        int material;
-        int autor;
-        int genero;
-        int estado;
+        string titulo;
+        string grupo;
+        string material;
+        string autor;
+        string genero;
+        string estado;
         int duracion;
-        int precio;
+        double precio;
 
 };
 

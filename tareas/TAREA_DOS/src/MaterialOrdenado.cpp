@@ -48,6 +48,20 @@ void MaterialOrdenado::agregarMaterial(){
 
         vectorDePunterosNoticia.push_back(new Noticia(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
 
+    } else if (material == "pelicula"){
+
+        cout << "Ingrese la duracion en minutos: " << endl;
+        cin >> cantiHojas;
+
+        vectorDePunterosPelicula.push_back(new Pelicula(titulo, grupo, material, autor, genero, estado, cantiHojas, precio));
+
+    } else{
+
+        cout << "Ingrese la duracion en minutos: " << endl;
+        cin >> cantiHojas;
+
+        vectorDePunterosPodcast.push_back(new Podcast(titulo, grupo, material, autor, genero, estado, cantiHojas, precio));
+
     }
     for (Libro* objeto : vectorDePunterosLibro) {
     cout << objeto->tamano << " ";
@@ -56,6 +70,16 @@ void MaterialOrdenado::agregarMaterial(){
 
     for (Noticia* objeto : vectorDePunterosNoticia) {
     cout << objeto->tamano << " xd ";
+    }
+    cout << endl;
+
+    for (Pelicula* objeto : vectorDePunterosPelicula) {
+    cout << objeto->tamano << " aa ";
+    }
+    cout << endl;
+
+    for (Podcast* objeto : vectorDePunterosPodcast) {
+    cout << objeto->tamano << " si ";
     }
     cout << endl;
 }
