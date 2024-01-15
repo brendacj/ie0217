@@ -39,9 +39,23 @@ void MaterialOrdenado::agregarMaterial(){
 
         vectorDePunterosLibro.push_back(new Libro(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
         
+    } else if (material == "noticia"){
+        cout << "Ingrese la editorial: " << endl;
+        cin >> editorial;
+
+        cout << "Ingrese la cantidad de hojas: " << endl;
+        cin >> cantiHojas;
+
+        vectorDePunterosNoticia.push_back(new Noticia(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
+
     }
     for (Libro* objeto : vectorDePunterosLibro) {
     cout << objeto->tamano << " ";
+    }
+    cout << endl;
+
+    for (Noticia* objeto : vectorDePunterosNoticia) {
+    cout << objeto->tamano << " xd ";
     }
     cout << endl;
 }

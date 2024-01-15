@@ -7,9 +7,23 @@ using namespace std;
 
 class Noticia : public MaterialLectura {
     public:
-    
-        void tamanoNoticia();
+        Noticia();
+        Noticia(
+            string titulo,
+            string grupo,
+            string material,
+            string autor,
+            string editorial,
+            string genero,
+            string estado,
+            int cantiHojas,
+            double precio
+        );
+
+        string tamanoNoticia(int cantiHojas);
         void imprimirNoticia();
+
+        string tamano;
 
 
 };
