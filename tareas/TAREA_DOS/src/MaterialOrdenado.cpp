@@ -1,7 +1,10 @@
 # include "MaterialOrdenado.hpp"
 
 MaterialOrdenado::MaterialOrdenado() {
-    // No hay ninguna inicialización específica en este momento
+    vectorDePunterosLibro = {};
+    vectorDePunterosNoticia = {};
+    vectorDePunterosPelicula = {};
+    vectorDePunterosPodcast = {};
 }
 
 void MaterialOrdenado::agregarMaterial(){
@@ -9,42 +12,53 @@ void MaterialOrdenado::agregarMaterial(){
     int cantiHojas;
     double precio;
 
+    cin.ignore();
+
     cout << "Ingrese el titulo: " << endl;
-    cin >> titulo;
+    std::getline(std::cin, titulo);
+    for (char &c : titulo) {
+        c = std::tolower(c);
+    }
 
     cout << "Ingrese el autor: " << endl;
-    cin >> autor;
+    std::getline(std::cin, autor);
 
     cout << "Ingrese el genero: " << endl;
-    cin >> genero;
+    std::getline(std::cin, genero);
 
     cout << "Ingrese el estado: " << endl;
-    cin >> estado;
-
-    cout << "Ingrese el precio: " << endl;
-    cin >> precio;
+    std::getline(std::cin, estado);
 
     cout << "Ingrese el grupo: " << endl;
-    cin >> grupo;
+    std::getline(std::cin, grupo);
 
     cout << "Ingrese el tipo de material: " << endl;
-    cin >> material;
+    std::getline(std::cin, material);
+    for (char &c : material) {
+        c = std::tolower(c);
+    }
 
     if (material == "libro"){
         cout << "Ingrese la editorial: " << endl;
-        cin >> editorial;
+        std::getline(std::cin, editorial);
 
         cout << "Ingrese la cantidad de hojas: " << endl;
         cin >> cantiHojas;
+
+        cout << "Ingrese el precio: " << endl;
+        cin >> precio;
 
         vectorDePunterosLibro.push_back(new Libro(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
         
     } else if (material == "noticia"){
         cout << "Ingrese la editorial: " << endl;
-        cin >> editorial;
+        std::getline(std::cin, editorial);
 
         cout << "Ingrese la cantidad de hojas: " << endl;
         cin >> cantiHojas;
+
+        cout << "Ingrese el precio: " << endl;
+        cin >> precio;
 
         vectorDePunterosNoticia.push_back(new Noticia(titulo, grupo, material, autor, editorial, genero, estado, cantiHojas, precio));
 
@@ -53,6 +67,9 @@ void MaterialOrdenado::agregarMaterial(){
         cout << "Ingrese la duracion en minutos: " << endl;
         cin >> cantiHojas;
 
+        cout << "Ingrese el precio: " << endl;
+        cin >> precio;
+
         vectorDePunterosPelicula.push_back(new Pelicula(titulo, grupo, material, autor, genero, estado, cantiHojas, precio));
 
     } else{
@@ -60,28 +77,13 @@ void MaterialOrdenado::agregarMaterial(){
         cout << "Ingrese la duracion en minutos: " << endl;
         cin >> cantiHojas;
 
+        cout << "Ingrese el precio: " << endl;
+        cin >> precio;
+
         vectorDePunterosPodcast.push_back(new Podcast(titulo, grupo, material, autor, genero, estado, cantiHojas, precio));
 
     }
-    for (Libro* objeto : vectorDePunterosLibro) {
-    cout << objeto->titulo<< " ";
-    }
-    cout << endl;
-
-    for (Noticia* objeto : vectorDePunterosNoticia) {
-    cout << objeto->tamano << " xd ";
-    }
-    cout << endl;
-
-    for (Pelicula* objeto : vectorDePunterosPelicula) {
-    cout << objeto->tamano << " aa ";
-    }
-    cout << endl;
-
-    for (Podcast* objeto : vectorDePunterosPodcast) {
-    cout << objeto->tamano << " si ";
-    }
-    cout << endl;
+    
 }
 
 void MaterialOrdenado::eliminarMaterial(){

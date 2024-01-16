@@ -1,10 +1,12 @@
 # include "MaterialOrdenado.hpp"
+# include "MaterialPrecio.hpp"
 
 void mostrarMenu();
 
 void procesarOpcion();
 
-MaterialOrdenado miMaterial; 
+//MaterialOrdenado miMaterial; 
+MaterialPrecio miPrecio;
 
 
 int main() {
@@ -29,6 +31,8 @@ void mostrarMenu() {
 void procesarOpcion(){
     int opcion;
     string tipo;
+    std::vector<double*> precios;
+    string deOrAs;
     // Solicitar al usuario que elija una opción
     std::cout << "\nIngrese una opcion: ";
     std::cin >> opcion;
@@ -36,7 +40,8 @@ void procesarOpcion(){
     switch (opcion)
     {
     case 1: 
-        miMaterial.agregarMaterial();
+        // Aqui
+        miPrecio.agregarMaterial();
         break;
 
     case 2: 
@@ -46,22 +51,43 @@ void procesarOpcion(){
     case 3: 
         cout << "\n¿Por cual medio desea buscar? (T: Titulo, M: Material)\n";
         cin >> tipo;
-        if (tipo == "M"){
+        for (char &c : tipo) {
+                c = std::tolower(c);
+            }
+        if (tipo == "m"){
             string material;
+            cin.ignore();
             cout << "Ingrese el material que desea buscar: ";
-            cin >> material;
-            miMaterial.buscarMaterial(material);
+            std::getline(std::cin, material);
+            for (char &c : material) {
+                c = std::tolower(c);
+            }
+            miPrecio.buscarMaterial(material);
         } else{
             string titulo;
+            cin.ignore();
             cout << "Ingrese el titulo que desea buscar: ";
-            cin >> titulo;
-            miMaterial.buscarTitulo(titulo);
+            std::getline(std::cin, titulo);
+            for (char &c : titulo) {
+                c = std::tolower(c);
+            }
+            miPrecio.buscarTitulo(titulo);
         }
         break;
 
-    case 4: 
-        // Iniciar juego difícil
-        cout << "Opcion 4";
+    case 4:
+        precios = miPrecio.obtenerPrecios();
+        cout << "\n";
+        cout << "Ordenar ascendente (A) o descendente (D): ";
+        for (char &c : deOrAs) {
+                c = std::tolower(c);
+            }
+        cin >> deOrAs;
+        if (deOrAs == "a"){
+            miPrecio.bubbleSort(precios, true);
+        } else{
+            miPrecio.bubbleSort(precios, false);
+        }
         break;
 
     
