@@ -5,7 +5,6 @@ void mostrarMenu();
 
 void procesarOpcion();
 
-//MaterialOrdenado miMaterial; 
 MaterialPrecio miPrecio;
 
 
@@ -30,6 +29,7 @@ void mostrarMenu() {
 
 void procesarOpcion(){
     int opcion;
+    string titulo;
     string tipo;
     std::vector<double*> precios;
     string deOrAs;
@@ -45,7 +45,13 @@ void procesarOpcion(){
         break;
 
     case 2: 
-        cout << "Opcion 2";
+        cin.ignore();
+        cout << "Ingrese el título del material que desea eliminar: ";
+        std::getline(std::cin, titulo);
+            for (char &c : titulo) {
+                c = std::tolower(c);
+            }
+        miPrecio.eliminarMaterial(titulo);
         break;
 
     case 3: 
@@ -78,20 +84,27 @@ void procesarOpcion(){
     case 4:
         precios = miPrecio.obtenerPrecios();
         cout << "\n";
-        cout << "Ordenar ascendente (A) o descendente (D): ";
-        for (char &c : deOrAs) {
-                c = std::tolower(c);
+        if (precios.size() != 0){
+                cout << "Ordenar ascendente (A) o descendente (D): ";
+            for (char &c : deOrAs) {
+                    c = std::tolower(c);
+                }
+            cin >> deOrAs;
+            if (deOrAs == "a"){
+                miPrecio.bubbleSort(precios, true);
+            } else {
+                miPrecio.bubbleSort(precios, false);
             }
-        cin >> deOrAs;
-        if (deOrAs == "a"){
-            miPrecio.bubbleSort(precios, true);
-        } else{
-            miPrecio.bubbleSort(precios, false);
+        } else {
+            cout << "No hay elementos que ordenar";
         }
         break;
 
     
     case 5: 
+        for (double* precio : precios) {
+        delete precio;
+    }
         // Sale del programa
         std::cout << "\nSaliendo del programa...\n";
         exit(0);

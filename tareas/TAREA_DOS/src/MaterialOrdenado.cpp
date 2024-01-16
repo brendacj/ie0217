@@ -7,6 +7,28 @@ MaterialOrdenado::MaterialOrdenado() {
     vectorDePunterosPodcast = {};
 }
 
+MaterialOrdenado::~MaterialOrdenado() {
+    // Liberar memoria para cada objeto en vectorDePunterosLibro
+    for (Libro* objeto : vectorDePunterosLibro) {
+        delete objeto;
+    }
+
+    // Liberar memoria para cada objeto en vectorDePunterosNoticia
+    for (Noticia* objeto : vectorDePunterosNoticia) {
+        delete objeto;
+    }
+
+    // Liberar memoria para cada objeto en vectorDePunterosPelicula
+    for (Pelicula* objeto : vectorDePunterosPelicula) {
+        delete objeto;
+    }
+
+    // Liberar memoria para cada objeto en vectorDePunterosPodcast
+    for (Podcast* objeto : vectorDePunterosPodcast) {
+        delete objeto;
+    }
+}
+
 void MaterialOrdenado::agregarMaterial(){
     string titulo, grupo, material, autor, editorial, genero, estado;
     int cantiHojas;
@@ -86,8 +108,31 @@ void MaterialOrdenado::agregarMaterial(){
     
 }
 
-void MaterialOrdenado::eliminarMaterial(){
-    cout << "Eliminar";
+void MaterialOrdenado::eliminarMaterial(string titulo){
+    for (size_t i = 0; i < vectorDePunterosLibro.size(); ++i) {
+        if (vectorDePunterosLibro[i]->titulo == titulo) {
+            delete vectorDePunterosLibro[i];
+            vectorDePunterosLibro.erase(vectorDePunterosLibro.begin() + i);
+        }
+    }
+    for (size_t i = 0; i < vectorDePunterosNoticia.size(); ++i) {
+        if (vectorDePunterosNoticia[i]->titulo == titulo) {
+            delete vectorDePunterosNoticia[i];
+            vectorDePunterosNoticia.erase(vectorDePunterosNoticia.begin() + i);
+        }
+    }
+    for (size_t i = 0; i < vectorDePunterosPelicula.size(); ++i) {
+        if (vectorDePunterosPelicula[i]->titulo == titulo) {
+            delete vectorDePunterosPelicula[i];
+            vectorDePunterosPelicula.erase(vectorDePunterosPelicula.begin() + i);
+        }
+    }
+    for (size_t i = 0; i < vectorDePunterosPodcast.size(); ++i) {
+        if (vectorDePunterosPodcast[i]->titulo == titulo) {
+            delete vectorDePunterosPodcast[i];
+            vectorDePunterosPodcast.erase(vectorDePunterosPodcast.begin() + i);
+        }
+    }
 }
 
 void MaterialOrdenado::buscarMaterial(string material){

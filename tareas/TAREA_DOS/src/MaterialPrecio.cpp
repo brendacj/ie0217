@@ -4,6 +4,8 @@ MaterialPrecio::MaterialPrecio() {
     // No hay ninguna inicialización específica en este momento
 }
 
+
+
 std::vector<double*> MaterialPrecio::obtenerPrecios(){
 
     std::vector<double*> vectorPrecios;
@@ -28,6 +30,7 @@ std::vector<double*> MaterialPrecio::obtenerPrecios(){
 
 void MaterialPrecio::bubbleSort(std::vector<double*>& vectorDePrecios, bool ascendente) {
     size_t n = vectorDePrecios.size();
+    
 
     for (size_t i = 0; i < n - 1; ++i) {
         for (size_t j = 0; j < n - i - 1; ++j) {

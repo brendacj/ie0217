@@ -13,7 +13,8 @@ using namespace std;
 class MaterialOrdenado : public Libro, public Noticia, public Pelicula, public Podcast {
     public:
         MaterialOrdenado();
-        void eliminarMaterial();
+        ~MaterialOrdenado();
+        void eliminarMaterial(string titulo);
         void agregarMaterial();
         void buscarMaterial(string material);
         void buscarTitulo(string titulo);
