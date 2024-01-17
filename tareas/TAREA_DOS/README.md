@@ -1,6 +1,45 @@
-# TAREA DOS
+# TAREA UNO
 ## Intrucciones de ejecución
 
+### Requisitos previos
+- Asegúrarse de tener instalado un compilador de C++ (por ejemplo, g++).
+
+- En caso de OS Windows asegúrarse de tener instalado una herramienta (MinGW) para acceder al Make.
+
+- Las respuestas a las preguntas teóricas se encuentran más abajo en el README.md.
+
+### Acceso 
+1. Al encontrarse en la carpeta TAREA_DOS del repositorio ie0217 ejecute el comando:
+
+    ```
+   cd .\src\
+   ```
+
+### Compilación
+
+1. Ejecute alguno de los siguientes comandos para para compilar y ejecutar el programa al mismo tiempo:
+
+    ```
+    make
+    make all
+    ```
+
+1. También puede ejecutar el siguiente comando para compilar el programa:
+
+   ```
+   make build
+   ```
+1. También puede ejecutar el siguiente comando para ejecutar el programa:
+
+    ```
+   make run
+   ```
+
+1. Una vez finalice el programa ejecute el siguiente comando para borrar los ejecutables generados:
+
+    ```
+   make clean
+   ```
 ## Parte teórica
 
 1. **Conceptos Fundamentales: Define qué es la programación orientada a objetos y explica sus principios fundamentales.**
@@ -136,7 +175,7 @@
 
 14. **Explique el concepto de punteros inteligentes (smart pointers) y proporcione ejemplos de su uso.**
 
-    Los punteros inteligentes son objetos en C++ que actúan como punteros, pero proporcionan funcionalidades adicionales destinadas a facilitar la gestión segura de la memoria dinámica. Estos objetos se encargan automáticamente de la liberación de memoria asignada dinámicamente a la que apuntan cuando ya no se necesita, ayudando a prevenir memory leaks y otros problemas relacionados con la gestión manual de la memoria. 
+    Los punteros inteligentes son objetos en C++ que actúan como punteros, pero proporcionan funcionalidades adicionales destinadas a facilitar la gestión segura de la memoria dinámica, entre otros. Estos objetos, pro ejemplo, se encargan automáticamente de la liberación de memoria asignada dinámicamente a la que apuntan cuando ya no se necesita, ayudando a prevenir memory leaks y otros problemas relacionados con la gestión manual de la memoria. 
 
     Obtenido de: [Punteros inteligentes (C++ moderno)](https://learn.microsoft.com/es-es/cpp/cpp/smart-pointers-modern-cpp?view=msvc-170)
 
