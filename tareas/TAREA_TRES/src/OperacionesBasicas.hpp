@@ -1,15 +1,25 @@
 #ifndef OPERACIONES_H
 #define OPERACIONES_H
 
+#include <iostream>
+#include "Matriz.hpp"
+
 template <typename T>
-class OperacionesBasicas{
+class OperacionesBasicas : public Matriz<T> {
     public:
-        OperacionesBasicas();
+        OperacionesBasicas(int filas, int columnas);
         T verificar();
-        T suma();
-        T resta();
-        T multiplicacion();
+        void Imprimir() const;
+        OperacionesBasicas<T> operator+(const Matriz<T>& otraMatriz) const;
+        OperacionesBasicas<T> operator-(const Matriz<T>& otraMatriz) const;
+        OperacionesBasicas<T> operator*(const Matriz<T>& otraMatriz) const;
+
+    private:
+        //std::vector<std::vector<T*>> resultado;
+        //OperacionesBasicas<T> resultado;
 
 };
+
+#include "OperacionesBasicas.cpp"
 
 #endif

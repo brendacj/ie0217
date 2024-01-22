@@ -4,18 +4,18 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <limits> 
 
 template <typename T>
 class Matriz{
     public:
-        Matriz();
-        void tamYDatos();
+        Matriz(int filas, int columnas);
+        int tamYDatos();
         T operacion();
-    private:
         int filas;
         int columnas;
         T numTemp;
-        std::vector<std::vector<T*>> matriz;
+        std::vector<std::vector<T>> matriz;
         //std::vector<T*> matriz; 
 
 };

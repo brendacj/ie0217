@@ -1,12 +1,19 @@
 #include "Matriz.hpp"
+#include "OperacionesBasicas.hpp"
 
-Matriz<float> matriz;
+OperacionesBasicas<float> matriz1(1, 2);
+OperacionesBasicas<float> matriz2(1, 2);
+OperacionesBasicas<float> resultado(1, 2);
+
+
 
 
 int main() {
 
-    matriz.tamYDatos();
-    matriz.tamYDatos();
+    matriz1.tamYDatos();
+    matriz2.tamYDatos();
+    resultado = matriz1 * matriz2;
+    resultado.Imprimir();
     
 
     return 0; // Fin del programa con código de retorno 0
