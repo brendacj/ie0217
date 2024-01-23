@@ -45,7 +45,6 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator-(const Matriz<T> &otra) co
             }
         }
         return resultado;
-
     
 }
 

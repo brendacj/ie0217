@@ -4,7 +4,21 @@ template<typename T>
 OperacionCompleja<T>::OperacionCompleja(int filas, int columnas) : Matriz<T>(filas, columnas) {}
 
 template<typename T>
+bool OperacionCompleja<T>::verificarDimensiones(const Matriz<T>& otra) const {
+    return this->filas == otra.filas && this->columnas == otra.columnas;
+}
+
+template<typename T>
+bool OperacionCompleja<T>::verificarDimensionesMultiplicacion(const Matriz<T>& otra) const {
+    return this->columnas == otra.filas;
+}
+
+template<typename T>
 OperacionCompleja<T> OperacionCompleja<T>::operator+(const Matriz<T> &otra) const {
+    if (!verificarDimensiones(otra)) {
+        // Lanzar una excepción u otro manejo de error
+        throw std::invalid_argument("Las matrices no tienen las mismas dimensiones para la suma.");
+    }
     OperacionCompleja resultado(this->filas, otra.columnas);
     for (int i = 0; i < this->filas; ++i) {
             for (int j = 0; j < this->columnas; ++j) {
@@ -19,6 +33,10 @@ OperacionCompleja<T> OperacionCompleja<T>::operator+(const Matriz<T> &otra) cons
 
 template<typename T>
 OperacionCompleja<T> OperacionCompleja<T>::operator-(const Matriz<T> &otra) const {
+    if (!verificarDimensiones(otra)) {
+        // Lanzar una excepción u otro manejo de error
+        throw std::invalid_argument("Las matrices no tienen las mismas dimensiones para la resta.");
+    }
     OperacionCompleja resultado(this->filas, otra.columnas);
     for (int i = 0; i < this->filas; ++i) {
             for (int j = 0; j < this->columnas; ++j) {
@@ -34,6 +52,10 @@ OperacionCompleja<T> OperacionCompleja<T>::operator-(const Matriz<T> &otra) cons
 template<typename T>
 OperacionCompleja<T> OperacionCompleja<T>::operator*(const Matriz<T> &otra) const{
     //Matriz<T> resultado(filas, otra.columnas);
+    if (!verificarDimensionesMultiplicacion(otra)) {
+        // Lanzar una excepción u otro manejo de error
+        throw std::invalid_argument("Las matrices no cumplen con las dimensiones para la multiplicación.");
+    }
     OperacionCompleja resultado(this->filas, otra.columnas);
     for (int i = 0; i < this->filas; ++i) {
         for (int j = 0; j < otra.columnas; ++j) {
@@ -46,13 +68,3 @@ OperacionCompleja<T> OperacionCompleja<T>::operator*(const Matriz<T> &otra) cons
 
     return resultado;
 }
-
-template<typename T>
-void OperacionCompleja<T>::Imprimir() const {
-        for (int k = 0; k < this->filas; k++) {
-            for (int r = 0; r < this->columnas; r++) {
-                std::cout << this->matriz[k][r] << " ";
-            }
-            std::cout << std::endl;
-        }
-    }
