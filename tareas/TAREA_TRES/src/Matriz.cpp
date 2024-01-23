@@ -3,8 +3,10 @@
 template<typename T>
 Matriz<T>::Matriz(int filas, int columnas) : filas(filas), columnas(columnas) {
     for (int i = 0; i < filas; i++) {
-        std::vector<T> filaVector(columnas);  // Inicializa los elementos con valores predeterminados de T
+        std::vector<T> filaVector(columnas);
+        std::vector<std::complex<float>> filaVectorC(columnas);
         matriz.push_back(filaVector);
+        matrizC.push_back(filaVectorC);
     }
 }
 
@@ -36,12 +38,21 @@ int Matriz<T>::tamYDatos(){
     }
 
    matriz.resize(filas, std::vector<T>(columnas));
+   matrizC.resize(filas, std::vector<std::complex<float>>(columnas));
 
     for( int i = 0; i <(filas); i++){
          for (int j = 0; j < columnas; j++){
 
-            T numTemp;
-            if (std::is_same<T, std::complex<float>>::value || std::is_same<T, std::complex<double>>::value) {
+            //T numTemp;
+            if (std::is_same<T, float>::value || std::is_same<T, int>::value) {
+                T numTemp;
+
+                std::cout << "Ingrese el valor en la posición " << i << "x" << j << ": ";
+                std::cin >> numTemp; 
+                matriz[i][j] = numTemp;
+
+            }else {
+                std::complex<float> numTemp;
                 float realPart;
                 float imagPart;
                 std::cout << "Ingrese la parte real del número complejo en la posición " << i << "x" << j << ": ";
@@ -50,14 +61,11 @@ int Matriz<T>::tamYDatos(){
                 std::cout << "Ingrese la parte imaginaria del número complejo en la posición " << i << "x" << j << ": ";
                 std::cin >> imagPart;
 
-                numTemp = T(realPart, imagPart);
-            }else {
-                // Si T no es std::complex, solicitar un solo valor
-                std::cout << "Ingrese el valor en la posición " << i << "x" << j << ": ";
-                std::cin >> numTemp;
+                numTemp = std::complex<float>(realPart, imagPart);
+                matrizC[i][j] = numTemp;
             }
 
-            matriz[i][j] = numTemp;
+            //matriz[i][j] = numTemp;
         }
     }
 

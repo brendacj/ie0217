@@ -18,6 +18,7 @@ class Matriz{
         int columnas;
         //T numTemp;
         std::vector<std::vector<T>> matriz;
+        std::vector<std::vector<std::complex<float>>> matrizC;
         //std::vector<T*> matriz; 
 
 };
