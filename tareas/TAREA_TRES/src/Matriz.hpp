@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <vector>
 #include <limits> 
+#include <complex>
+#include <type_traits>
 
 template <typename T>
 class Matriz{
@@ -14,7 +16,7 @@ class Matriz{
         T operacion();
         int filas;
         int columnas;
-        T numTemp;
+        //T numTemp;
         std::vector<std::vector<T>> matriz;
         //std::vector<T*> matriz; 
 

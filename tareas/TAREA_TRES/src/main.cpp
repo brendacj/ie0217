@@ -1,9 +1,10 @@
 #include "Matriz.hpp"
+#include <complex>
 #include "OperacionesBasicas.hpp"
 
-OperacionesBasicas<float> matriz1(1, 2);
-OperacionesBasicas<float> matriz2(1, 2);
-OperacionesBasicas<float> resultado(1, 2);
+OperacionesBasicas<std::complex<float>> matriz1(1, 2);
+OperacionesBasicas<std::complex<float>> matriz2(1, 2);
+OperacionesBasicas<std::complex<float>> resultado(1, 2);
 
 
 

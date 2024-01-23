@@ -38,12 +38,27 @@ int Matriz<T>::tamYDatos(){
    matriz.resize(filas, std::vector<T>(columnas));
 
     for( int i = 0; i <(filas); i++){
-        for (int j = 0; j < columnas; j++){
-            std::cout << "Ingrese el número de la posición " << i << "x" << j << ": ";
-            std::cin >> numTemp;
-            matriz[i][j] = T(numTemp);
-        }
+         for (int j = 0; j < columnas; j++){
 
+            T numTemp;
+            if (std::is_same<T, std::complex<float>>::value || std::is_same<T, std::complex<double>>::value) {
+                float realPart;
+                float imagPart;
+                std::cout << "Ingrese la parte real del número complejo en la posición " << i << "x" << j << ": ";
+                std::cin >> realPart;
+
+                std::cout << "Ingrese la parte imaginaria del número complejo en la posición " << i << "x" << j << ": ";
+                std::cin >> imagPart;
+
+                numTemp = T(realPart, imagPart);
+            }else {
+                // Si T no es std::complex, solicitar un solo valor
+                std::cout << "Ingrese el valor en la posición " << i << "x" << j << ": ";
+                std::cin >> numTemp;
+            }
+
+            matriz[i][j] = numTemp;
+        }
     }
 
 
