@@ -9,7 +9,7 @@ class OperacionesBasicas : public Matriz<T> {
     public:
         OperacionesBasicas(int filas, int columnas);
         T verificar();
-        void Imprimir() const;
+        //void Imprimir() const;
         OperacionesBasicas<T> operator+(const Matriz<T>& otraMatriz) const;
         OperacionesBasicas<T> operator-(const Matriz<T>& otraMatriz) const;
         OperacionesBasicas<T> operator*(const Matriz<T>& otraMatriz) const;

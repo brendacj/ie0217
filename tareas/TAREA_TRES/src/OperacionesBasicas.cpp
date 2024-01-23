@@ -46,13 +46,3 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator*(const Matriz<T> &otra) co
 
     return resultado;
 }
-
-template<typename T>
-void OperacionesBasicas<T>::Imprimir() const {
-        for (int k = 0; k < this->filas; k++) {
-            for (int r = 0; r < this->columnas; r++) {
-                std::cout << this->matriz[k][r] << " ";
-            }
-            std::cout << std::endl;
-        }
-    }
