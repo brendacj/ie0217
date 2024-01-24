@@ -20,21 +20,23 @@ int Matriz<T>::tamYDatos(){
             std::cin >> filas;
 
         if (std::cin.fail()) {
-            throw std::runtime_error("Error: No es un número válido para filas");
+            throw std::runtime_error("No es un número válido para filas");
         }
 
         std::cout << "Ingrese el número de columnas";
             std::cin >> columnas;
 
          if (std::cin.fail()) {
-            throw std::runtime_error("Error: No es un número válido para columnas");
+            throw std::runtime_error("No es un número válido para columnas");
         }
     }
-    catch (const std::runtime_error& e) {
-        std::cout << e.what() << std::endl;
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        return 0;
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+        //std::cout << e.what() << std::endl;
+        //std::cin.clear();
+        //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        exit(EXIT_FAILURE);
+        //return 0;
     }
 
    matriz.resize(filas, std::vector<T>(columnas));
@@ -46,20 +48,41 @@ int Matriz<T>::tamYDatos(){
             //T numTemp;
             if (std::is_same<T, float>::value || std::is_same<T, int>::value) {
                 T numTemp;
-
-                std::cout << "Ingrese el valor en la posición " << i << "x" << j << ": ";
-                std::cin >> numTemp; 
+                try{
+                    std::cout << "Ingrese el valor en la posición " << i << "x" << j << ": ";
+                    std::cin >> numTemp; 
+                    if (std::cin.fail()) {
+                    throw std::runtime_error("No es un número válido para el tipo especificado");
+                    }
+                } catch (const std::exception& e){
+                    std::cerr << "Error: " << e.what() << std::endl;
+                    exit(EXIT_FAILURE);
+                }
                 matriz[i][j] = numTemp;
 
             }else {
                 std::complex<float> numTemp;
                 float realPart;
                 float imagPart;
-                std::cout << "Ingrese la parte real del número complejo en la posición " << i << "x" << j << ": ";
-                std::cin >> realPart;
+                try{
+                    std::cout << "Ingrese la parte real del número complejo en la posición " << i << "x" << j << ": ";
+                    std::cin >> realPart;
 
-                std::cout << "Ingrese la parte imaginaria del número complejo en la posición " << i << "x" << j << ": ";
-                std::cin >> imagPart;
+                    if (std::cin.fail()) {
+                    throw std::runtime_error("No es un número válido para el tipo especificado");
+                    }
+
+                    std::cout << "Ingrese la parte imaginaria del número complejo en la posición " << i << "x" << j << ": ";
+                    std::cin >> imagPart;
+
+                    if (std::cin.fail()) {
+                    throw std::runtime_error("No es un número válido para el tipo especificado");
+                    }
+                    
+                } catch (const std::exception& e){
+                    std::cerr << "Error: " << e.what() << std::endl;
+                    exit(EXIT_FAILURE);
+                }
 
                 numTemp = std::complex<float>(realPart, imagPart);
                 matrizC[i][j] = numTemp;

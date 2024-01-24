@@ -18,6 +18,7 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator+(const Matriz<T> &otra) co
     if (!verificarDimensiones(otra)) {
         // Lanzar una excepción u otro manejo de error
         throw std::invalid_argument("Las matrices no tienen las mismas dimensiones para la suma.");
+        exit(EXIT_FAILURE);
     }
     OperacionesBasicas resultado(this->filas, otra.columnas);
     for (int i = 0; i < this->filas; ++i) {
