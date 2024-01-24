@@ -75,7 +75,7 @@ void opcionDato(){
         std::cout << "Datos segunda matriz" << std::endl;
         matriz2.tamYDatos();
         std::cout << "Segunda matriz" << std::endl;
-        Imprimir<int>::ImprimirMatriz(matriz1, 1);
+        Imprimir<int>::ImprimirMatriz(matriz2, 1);
 
         /// Pide y verifica la opción de la operación con operacionVerificar()
         char operacion = operacionVerificar();
@@ -116,7 +116,7 @@ void opcionDato(){
         std::cout << "Datos segunda matriz" << std::endl;
         matriz2.tamYDatos();
         std::cout << "Segunda matriz" << std::endl;
-        Imprimir<float>::ImprimirMatriz(matriz1, 1);
+        Imprimir<float>::ImprimirMatriz(matriz2, 1);
 
         /// Pide y verifica la opción de la operación con operacionVerificar()
         char operacion = operacionVerificar();
@@ -158,7 +158,7 @@ void opcionDato(){
         std::cout << "Datos segunda matriz" << std::endl;
         matriz2.tamYDatos();
         std::cout << "Segunda matriz" << std::endl;
-        Imprimir<std::complex<float>>::ImprimirMatriz(matriz1, 2);
+        Imprimir<std::complex<float>>::ImprimirMatriz(matriz2, 2);
 
         /// Pide y verifica la opción de la operación con operacionVerificar()
        char operacion = operacionVerificar();

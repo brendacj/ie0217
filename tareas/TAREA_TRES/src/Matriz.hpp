@@ -47,7 +47,7 @@ class Matriz{
          * 
          * @return 0 si se ejecuta correctamente.
          */
-        int tamYDatos();
+        void tamYDatos();
 
         int filas; /**< Número de filas de la matriz. */
         int columnas; /**< Número de columnas de la matriz. */

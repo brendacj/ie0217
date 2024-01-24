@@ -29,8 +29,10 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator+(const Matriz<T> &otra) co
     try{
         /// Verificar dimensiones antes de realizar la suma
         if (!verificarDimensiones(otra)) {
-        // Lanzar una excepción u otro manejo de error
-        throw std::invalid_argument("Las matrices no tienen las mismas dimensiones para la suma.");
+            
+            // Lanzar una excepción 
+            std::cout << "Error: Las matrices no tienen las mismas dimensiones para la suma.";
+            throw 1;
         }
 
         /// Crear una matriz resultado con las mismas dimensiones
@@ -44,9 +46,7 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator+(const Matriz<T> &otra) co
             }
             return resultado;
     }
-    catch (const std::exception& e){
-        /// Manejar excepciones y mostrar mensaje de error
-        std::cerr << "Error: " << e.what() << std::endl;
+    catch (int num){
         exit(EXIT_FAILURE);
     }
 
@@ -59,8 +59,9 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator-(const Matriz<T> &otra) co
     try{
         /// Verificar dimensiones antes de realizar la resta
         if (!verificarDimensiones(otra)) {
-            // Lanzar una excepción u otro manejo de error
-            throw std::invalid_argument("Las matrices no tienen las mismas dimensiones para la resta.");
+            // Lanzar una excepción 
+            std::cout << "Error: Las matrices no tienen las mismas dimensiones para la resta.";
+            throw 2;
         }
 
         /// Crear una matriz resultado con las mismas dimensiones
@@ -75,9 +76,8 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator-(const Matriz<T> &otra) co
             }
             return resultado;
     }
-    catch (const std::exception& e){
-        /// Manejar excepciones y mostrar mensaje de error
-        std::cerr << "Error: " << e.what() << std::endl;
+    catch (int num){
+        /// Manejar excepciones 
         exit(EXIT_FAILURE);
     }   
 }
@@ -88,8 +88,9 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator*(const Matriz<T> &otra) co
     try{
         /// Verificar dimensiones antes de realizar la multiplicación
         if (!verificarDimensionesMultiplicacion(otra)) {
-            // Lanzar una excepción u otro manejo de error
-            throw std::invalid_argument("Las matrices no cumplen con las dimensiones para la multiplicación.");
+            // Lanzar una excepción 
+            std::cout << "Error: Las matrices no cumplen con las dimensiones para la multiplicación.";
+            throw 3;
         }
 
         /// Crear una matriz resultado con las dimensiones adecuadas
@@ -107,9 +108,8 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator*(const Matriz<T> &otra) co
 
         return resultado;
     }
-    catch (const std::exception& e){
-        /// Manejar excepciones y mostrar mensaje de error
-        std::cerr << "Error: " << e.what() << std::endl;
+    catch (int num){
+        /// Manejar excepciones 
         exit(EXIT_FAILURE);
     } 
 }

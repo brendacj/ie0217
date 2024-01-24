@@ -21,7 +21,7 @@ Matriz<T>::Matriz(int filas, int columnas) : filas(filas), columnas(columnas) {
 
 /// Implementación del método tamYDatos de la clase Matriz
 template<typename T>
-int Matriz<T>::tamYDatos(){
+void Matriz<T>::tamYDatos(){
 
     try{
         /// Solicita al usuario que ingrese el número de filas
@@ -34,7 +34,7 @@ int Matriz<T>::tamYDatos(){
         }
 
         /// Solicita al usuario que ingrese el número de columnas
-        std::cout << "Ingrese el número de columnas";
+        std::cout << "Ingrese el número de columnas: ";
             std::cin >> columnas;
         
         /// Verifica si la entrada es válida para el número de columnas

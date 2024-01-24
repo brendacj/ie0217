@@ -1,4 +1,4 @@
-# TAREA DOS
+# TAREA TRES
 ## Intrucciones de ejecución
 
 ### Requisitos previos
@@ -8,11 +8,37 @@
 
 - Las respuestas a las preguntas teóricas se encuentran más abajo en el README.md.
 
-### Acceso 
-1. Al encontrarse en la carpeta TAREA_DOS del repositorio ie0217 ejecute el comando:
+### Compilación y ejecución
+
+1. Una vez dentro de la carpeta TAREA_TRES ejecute el siguiente comando para para compilar y ejecutar al mismo tiempo el programa 1, correspondiente al programa de operaciones con matrices:
 
     ```
-   cd .\src\
+    make programa1
+    ```
+    O puede compilar el siguiente comando para compilar y ejecutar al mismo tiempo el programa 2, correspondiente al programa para validad correos eléctronicos:
+
+    ```
+    make programa2
+    ```
+
+1. También puede compilar los siguientes programas para ejecutar el programa 1 y 2 respectivamente:
+
+   ```
+   make build1
+   make build2
+   ```
+1. Y ejecutar el siguiente comando para ejecutar los programas 1 y 2 respectivamente:
+
+    ```
+   make run1
+   make run2
+   ```
+
+1. Una vez finalice el programa ejecute el siguiente comando para borrar los ejecutables generados por el programa 1 y 2 respectivamente:
+
+    ```
+   make clean1
+   make clean2
    ```
 
 ## Parte teórica
