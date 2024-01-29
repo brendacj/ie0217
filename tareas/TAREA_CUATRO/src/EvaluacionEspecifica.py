@@ -18,3 +18,8 @@ class EvaluacionEspecifica(Alergia):
         print("Su puntuación es general es", self.puntuacionGeneral)
         for i in alergiasPresentes:
             i.imprimir_alergia()
+
+    def AgregarAlergia(self):
+        nombre = input("Ingrese el nombre de la alergia a ingresar: ")
+        valor = int(input("Ingrese el valor de la alergia a ingresar (Potencia de 2): "))
+        Alergia.alergiasSistema[nombre] = valor
