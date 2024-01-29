@@ -8,7 +8,7 @@ class TiposDeAlergias(Alergia):
     def ingresarNombre(self):
         cantidadAlergias = int(input("Ingrese la cantidad de alergias a registar: "))
         for i in range(cantidadAlergias):
-            nombre = input("Ingrese el nombre de la alergia número"+ str(i) + ": ")
+            nombre = input("Ingrese el nombre de la alergia número "+ str(i) + ": ")
             for alergia in Alergia.alergiasSistema:
                 if alergia == nombre:
                     nueva_alergia = Alergia(nombre=alergia, valor=Alergia.alergiasSistema[alergia])
@@ -17,9 +17,24 @@ class TiposDeAlergias(Alergia):
             else:
                 self.nombreNoEncontrado.append(nombre)
 
-        for i in self.listaFinal:
-            i.imprimir_alergia()
-        print("XDD")
-        for j in self.nombreNoEncontrado:
-            print(j)
+    
+    def ingresarValor(self):
+        cantidadAlergias = int(input("Ingrese la cantidad de alergias a registar: "))
+        for i in range(cantidadAlergias):
+            valor = int(input("Ingrese el valor de la alergia número "+ str(i) + ": "))
+            for alergia in Alergia.alergiasSistema:
+                if Alergia.alergiasSistema[alergia] == valor:
+                    nueva_alergia = Alergia(nombre=alergia, valor=valor)
+                    self.listaFinal.append(nueva_alergia)
+                    break
+            else:
+                self.valorNoEncontrado.append(valor)
             
+
+    def ingresarNombreValor(self):
+        cantidadAlergias = int(input("Ingrese la cantidad de alergias a registar: "))
+        for i in range(cantidadAlergias):
+            nombre = input("Ingrese el nombre de la alergia número "+ str(i) + ": ")
+            valor = int(input("Ingrese el valor de la alergia número "+ str(i) + ": "))
+            nueva_alergia = Alergia(nombre=nombre, valor=valor)
+            self.listaFinal.append(nueva_alergia)
