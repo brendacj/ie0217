@@ -14,12 +14,35 @@ class EvaluacionEspecifica(Alergia):
 
         return self.alergiasPresentes
     
+    def VerificarInt(self,mensajeusuario,mensajeerror ="No es un número válido, verifique"):
+        valor_legal=False
+        while valor_legal==False:
+            try:
+                valorusuario = int((input(mensajeusuario)))
+                valor_legal=True
+            except:
+                print(mensajeerror)
+        return(valorusuario)
+    
+    def VerificarStr(self,mensajeusuario,mensajeerror ="No es un nombre válido, verifique"):
+        valor_legal=False
+        while valor_legal==False:
+            try:
+                valorusuario = (input(mensajeusuario))
+                if valorusuario.strip(): 
+                    valor_legal=True
+                else:
+                    print(mensajeerror)
+            except:
+                print(mensajeerror)
+        return(valorusuario)
+    
     def mostarInfo(self,alergiasPresentes):
         print("Su puntuación es general es", self.puntuacionGeneral)
         for i in alergiasPresentes:
             i.imprimir_alergia()
 
     def AgregarAlergia(self):
-        nombre = input("Ingrese el nombre de la alergia a ingresar: ")
-        valor = int(input("Ingrese el valor de la alergia a ingresar (Potencia de 2): "))
+        nombre = self.VerificarStr("Ingrese el nombre de la alergia a ingresar: ")
+        valor = self.VerificarInt("Ingrese el valor de la alergia a ingresar (Potencia de 2): ")
         Alergia.alergiasSistema[nombre] = valor

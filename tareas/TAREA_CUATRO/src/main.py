@@ -33,20 +33,57 @@ def menuDos():
           "c. Ingresar alergias por nombre y valor \n"
           "d. Calcular la puntuación final de alergias")
     
+def VerificarOpcion1(mensajeusuario,mensajeerror ="No es una opción válida"):
+        valor_legal=False
+        while valor_legal==False:
+            try:
+                valorusuario = input(mensajeusuario)
+                if valorusuario == "1" or valorusuario ==  "2" or valorusuario == "3" or valorusuario ==  "4":
+                    valor_legal = True
+                else:
+                    print(mensajeerror)
+            except:
+                print(mensajeerror)
+        return(valorusuario)
+    
+
+def VerificarOpcion2(mensajeusuario,mensajeerror ="No es una opción válida"):
+        valor_legal=False
+        while valor_legal==False:
+            try:
+                valorusuario = input(mensajeusuario).lower()
+                if valorusuario == "a" or valorusuario ==  "b" or valorusuario == "c" or valorusuario ==  "d":
+                    valor_legal = True
+                else:
+                    print(mensajeerror)
+            except:
+                print(mensajeerror)
+        return(valorusuario)
+
+def VerificarInt(mensajeusuario,mensajeerror ="No es un número válido, verifique"):
+        valor_legal=False
+        while valor_legal==False:
+            try:
+                valorusuario = int((input(mensajeusuario)))
+                valor_legal=True
+            except:
+                print(mensajeerror)
+        return(valorusuario)
+    
 def procesarOpción():
     while True:
         mostrarMenu()
-        opc = input("Ingrese una opción: ")
+        opc = VerificarOpcion1("Ingrese una opción: ")
         if opc == "1":
             evaluacion = EvaluacionEspecifica()
-            num = int(input("Ingrese su puntuación general: "))
+            num = VerificarInt("Ingrese su puntuación general: ")
             listas = evaluacion.evaluarAlergias(num)
             evaluacion.mostarInfo(listas)
         elif opc == "2":
             tipo = TiposDeAlergias()
             while True:
                 menuDos()
-                opc2 = input("Ingrese una opción: ")
+                opc2 = VerificarOpcion2("Ingrese una opción: ")
                 if opc2 == "a":
                     tipo.ingresarNombre()
                 elif opc2 == "b":
@@ -57,11 +94,11 @@ def procesarOpción():
                     general = EvaluacionGeneral()
                     general.calcularPuntuacion(tipo.listaFinal)
                     if len(tipo.nombreNoEncontrado) != 0:
-                        print("Los nombres desconocidos de alergias son: ")
+                        print("\nLos nombres desconocidos de alergias son: ")
                         general.resultadosDesconocidos(tipo.nombreNoEncontrado)
 
                     if len(tipo.valorNoEncontrado) != 0:
-                        print("Los nombres desconocidos de alergias son: ")
+                        print("\nLos nombres desconocidos de alergias son: ")
                         general.resultadosDesconocidos(tipo.valorNoEncontrado)
                     break
         elif opc == "3":
@@ -69,10 +106,6 @@ def procesarOpción():
             evaluacion.AgregarAlergia()
         else:
             break
-
-
-
-
 
 
 print("--Alergias--")
