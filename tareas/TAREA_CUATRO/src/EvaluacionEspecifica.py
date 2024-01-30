@@ -1,53 +1,123 @@
 from Alergia import Alergia
 import math
 
+
 class EvaluacionEspecifica(Alergia):
+    """
+    Clase que realiza la evaluación específica de alergias para una puntuación general dada.
+
+    Atributos:
+    - puntuacionGeneral: Puntuación general de alergias.
+    - alergiasPresentes: Lista de instancias de la clase Alergia asociadas a la puntuación.
+
+    Métodos:
+    - evaluarAlergias: Evalúa las alergias para la puntuación general y devuelve una lista de instancias de Alergia.
+    - VerificarPotencia2: Verifica si un número es una potencia de 2.
+    - VerificarStr: Verifica si un string es válido.
+    - mostarInfo: Muestra información sobre la puntuación general y las alergias presentes.
+    - AgregarAlergia: Agrega una nueva alergia al sistema.
+    """
     def __init__(self):
+        """
+        Constructor de la clase EvaluacionEspecifica.
+        Inicializa los atributos
+        """
         self.puntuacionGeneral = 0
         self.alergiasPresentes = []
 
-    def evaluarAlergias (self, puntuacionGeneral):
+    def evaluarAlergias(self, puntuacionGeneral):
+        """
+        Evalúa las alergias para la puntuación general y devuelve una lista de instancias de Alergia.
+
+        Parámetros:
+        - puntuacionGeneral: Puntuación general de alergias a evaluar.
+
+        Retorna:
+        Lista de instancias de Alergia asociadas a la puntuación general.
+        """
         self.puntuacionGeneral = puntuacionGeneral
+        # Recorre ambos elementos del diccionario a la vez
         for alergia, valor in Alergia.alergiasSistema.items():
+            # Compara byte por byte
             if self.puntuacionGeneral & valor:
-                nueva_alergia = Alergia(nombre=alergia, valor=valor)  # Verificar si la alergia está presente
+                # Verificar si la alergia está presente
+                nueva_alergia = Alergia(nombre=alergia, valor=valor)
                 self.alergiasPresentes.append(nueva_alergia)
 
         return self.alergiasPresentes
-    
-    def VerificarPotencia2(self,mensajeusuario,mensajeerror ="No es un número válido, verifique"):
-        valor_legal=False
-        while valor_legal==False:
+
+    def VerificarPotencia2(self, mensajeusuario, mensajeerror="No es un número válido, verifique"):
+        """
+        Verifica si un número es una potencia de 2.
+
+        Parámetros:
+        - mensajeusuario: Mensaje para solicitar el número al usuario.
+        - mensajeerror: Mensaje de error en caso de entrada no válida.
+
+        Retorna:
+        Número que es potencia de 2.
+        """
+        valor_legal = False
+        # Pide el valor hasta que se ingrese uno correcto
+        while valor_legal == False:
             try:
                 valorusuario = int((input(mensajeusuario)))
+                # Si al despejar la potencia es entero
                 if math.log2(valorusuario).is_integer():
-                    valor_legal=True
+                    valor_legal = True
                 else:
+                    # Sino devuelve el mensaje
                     print(mensajeerror)
             except:
+                # Si encuentra un error devuelve el mensaje
                 print(mensajeerror)
-        return(valorusuario)
-    
-    def VerificarStr(self,mensajeusuario,mensajeerror ="No es un nombre válido, verifique"):
-        valor_legal=False
-        while valor_legal==False:
+        return (valorusuario)
+
+    def VerificarStr(self, mensajeusuario, mensajeerror="No es un nombre válido, verifique"):
+        """
+        Verifica si un string es válido.
+
+        Parámetros:
+        - mensajeusuario: Mensaje para solicitar el string al usuario.
+        - mensajeerror: Mensaje de error en caso de entrada no válida.
+
+        Retorna:
+        String válido.
+        """
+        valor_legal = False
+        # Pide el nombre hasta que se ingrese uno correcto
+        while valor_legal == False:
             try:
                 valorusuario = (input(mensajeusuario))
-                if valorusuario.strip(): 
-                    valor_legal=True
+                # Verifica si el str no está vacío
+                if valorusuario.strip():
+                    valor_legal = True
                 else:
+                    # Sino devuelve el mensaje
                     print(mensajeerror)
             except:
+                # Si encuentra un error devueleve el mensaje
                 print(mensajeerror)
-        return(valorusuario)
-    
-    def mostarInfo(self,alergiasPresentes):
+        return (valorusuario)
+
+    def mostarInfo(self, alergiasPresentes):
+        """
+        Muestra información sobre la puntuación general y las alergias presentes.
+
+        Parámetros:
+        - alergiasPresentes: Lista de instancias de Alergia asociadas a la puntuación general.
+        """
         print("Su puntuación general es", self.puntuacionGeneral)
         print("Lista de alergias asociadas a la puntuación: ")
         for i in alergiasPresentes:
             i.imprimir_alergia()
 
     def AgregarAlergia(self):
-        nombre = self.VerificarStr("Ingrese el nombre de la alergia a ingresar: ")
-        valor = self.VerificarPotencia2("Ingrese el valor de la alergia a ingresar (Potencia de 2): ")
+        """
+        Agrega una nueva alergia al sistema.
+        """
+        nombre = self.VerificarStr(
+            "Ingrese el nombre de la alergia a ingresar: ")
+        valor = self.VerificarPotencia2(
+            "Ingrese el valor de la alergia a ingresar (Potencia de 2): ")
         Alergia.alergiasSistema[nombre] = valor

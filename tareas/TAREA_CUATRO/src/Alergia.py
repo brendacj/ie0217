@@ -1,5 +1,10 @@
 class Alergia():
     """
+    Clase que representa una alergia y permite la creación de diferentes tipos.
+    """
+
+    # Implementación para la segunda parte práctica
+    """
     nombre_archivo = "C:\\Users\\Usuario\\Desktop\\ie0217\\ie0217\\tareas\\TAREA_CUATRO\\src\\Alergias.txt"
 
     # Inicializar el diccionario
@@ -25,11 +30,24 @@ class Alergia():
 
     """
 
-    alergiasSistema = {"huevo" : 1 , "cacahuetes" : 2, "mariscos": 4, "fresas": 8, "tomates": 16, "chocolate": 32, "polen": 64, "gatos": 128, "sardina": 256, "glúten": 512}
-    # Constructor inicializa las variables
+    # Diccionario que almacenará el nombre de la alergia como clave y su valor como valor.
+    alergiasSistema = {"huevo": 1, "cacahuetes": 2, "mariscos": 4, "fresas": 8, "tomates": 16,
+                       "chocolate": 32, "polen": 64, "gatos": 128, "sardina": 256, "glúten": 512}
+
     def __init__(self, nombre, valor):
+        """
+        Constructor que inicializa las variables de la instancia.
+
+        :param nombre: Nombre de la alergia.
+        :param valor: Valor asociado a la alergia.
+        """
         self.nombreAlergia = nombre
         self.valorAlergia = valor
-    # Muestra la información
+
     def imprimir_alergia(self):
+        """
+        Método que imprime la información de la alergia.
+
+        :return: None
+        """
         print(f"Nombre: {self.nombreAlergia}\nValor: {self.valorAlergia}")
