@@ -1,4 +1,5 @@
 from Alergia import Alergia
+import math
 
 class EvaluacionEspecifica(Alergia):
     def __init__(self):
@@ -14,12 +15,15 @@ class EvaluacionEspecifica(Alergia):
 
         return self.alergiasPresentes
     
-    def VerificarInt(self,mensajeusuario,mensajeerror ="No es un número válido, verifique"):
+    def VerificarPotencia2(self,mensajeusuario,mensajeerror ="No es un número válido, verifique"):
         valor_legal=False
         while valor_legal==False:
             try:
                 valorusuario = int((input(mensajeusuario)))
-                valor_legal=True
+                if math.log2(valorusuario).is_integer():
+                    valor_legal=True
+                else:
+                    print(mensajeerror)
             except:
                 print(mensajeerror)
         return(valorusuario)
@@ -44,5 +48,5 @@ class EvaluacionEspecifica(Alergia):
 
     def AgregarAlergia(self):
         nombre = self.VerificarStr("Ingrese el nombre de la alergia a ingresar: ")
-        valor = self.VerificarInt("Ingrese el valor de la alergia a ingresar (Potencia de 2): ")
+        valor = self.VerificarPotencia2("Ingrese el valor de la alergia a ingresar (Potencia de 2): ")
         Alergia.alergiasSistema[nombre] = valor

@@ -9,6 +9,10 @@ class EvaluacionGeneral():
 
         print("\nLa puntuación final obtenida fue:",str(self.puntuacion))
 
+    def calcularPromedio(self, total, encontrados):
+        porcentaje = round((encontrados/total)*100, 3)
+        print("El porcentaje de alergias encontradas fue: "+ str(porcentaje) + "%")
+
     def resultadosDesconocidos(self, listaDesconocida):
         for desconocido in listaDesconocida:
             print(desconocido)

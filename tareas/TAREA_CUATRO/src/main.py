@@ -1,26 +1,9 @@
 from EvaluacionEspecifica import EvaluacionEspecifica
 from TiposDeAlergia import TiposDeAlergias
 from EvaluacionGeneral import EvaluacionGeneral
+import timeit
+import cProfile
 
-"""
-evaluacion1 = TiposDeAlergias()
-evaluacion1.ingresarNombre()
-evaluacion1.ingresarValor()
-general1 = EvaluacionGeneral()
-general1.calcularPuntuacion(evaluacion1.listaFinal)
-if len(evaluacion1.nombreNoEncontrado) != 0:
-    print("Los nombres desconocidos de alergias son: ")
-    general1.resultadosDesconocidos(evaluacion1.nombreNoEncontrado)
-
-if len(evaluacion1.valorNoEncontrado) != 0:
-    print("Los nombres desconocidos de alergias son: ")
-    general1.resultadosDesconocidos(evaluacion1.valorNoEncontrado)
-
-evaluacion1 = EvaluacionEspecifica()
-num = int(input("Ingrese su puntuación general: "))
-listas = evaluacion1.evaluarAlergias(num)
-evaluacion1.mostarInfo(listas)
-"""
 def mostrarMenu():
     print("1. Mostrar lista de alergias padecidas \n"
           "2. Calcular puntuación de alergias \n"
@@ -70,7 +53,7 @@ def VerificarInt(mensajeusuario,mensajeerror ="No es un número válido, verifiq
                 print(mensajeerror)
         return(valorusuario)
     
-def procesarOpción():
+def procesarOpcion():
     while True:
         mostrarMenu()
         opc = VerificarOpcion1("Ingrese una opción: ")
@@ -93,6 +76,8 @@ def procesarOpción():
                 else:
                     general = EvaluacionGeneral()
                     general.calcularPuntuacion(tipo.listaFinal)
+                    total = len(tipo.listaFinal) + len(tipo.nombreNoEncontrado) + len(tipo.valorNoEncontrado)
+                    general.calcularPromedio(total, len(tipo.listaFinal))
                     if len(tipo.nombreNoEncontrado) != 0:
                         print("\nLos nombres desconocidos de alergias son: ")
                         general.resultadosDesconocidos(tipo.nombreNoEncontrado)
@@ -107,8 +92,11 @@ def procesarOpción():
         else:
             break
 
-
 print("--Alergias--")
-procesarOpción()
+procesarOpcion()
+
+#tiempo_ejecucion = timeit.timeit(procesarOpcion, number=1) 
+#print(f'Tiempo de ejecución: {tiempo_ejecucion} segundos')
+
 
 
