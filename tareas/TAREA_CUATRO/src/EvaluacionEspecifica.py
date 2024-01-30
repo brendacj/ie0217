@@ -42,7 +42,8 @@ class EvaluacionEspecifica(Alergia):
         return(valorusuario)
     
     def mostarInfo(self,alergiasPresentes):
-        print("Su puntuación es general es", self.puntuacionGeneral)
+        print("Su puntuación general es", self.puntuacionGeneral)
+        print("Lista de alergias asociadas a la puntuación: ")
         for i in alergiasPresentes:
             i.imprimir_alergia()
 
