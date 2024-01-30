@@ -95,8 +95,10 @@ def procesarOpcion():
 print("--Alergias--")
 procesarOpcion()
 
+"""
 tiempo_ejecucion = timeit.timeit(procesarOpcion, number=1) 
 print(f'Tiempo de ejecución: {tiempo_ejecucion} segundos')
+"""
 
 
 
