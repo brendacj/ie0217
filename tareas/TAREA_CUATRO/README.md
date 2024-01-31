@@ -2,7 +2,7 @@
 ## Intrucciones de ejecución
 
 ### Requisitos previos
-- Asegúrarse de tener instalado un compilador de C++ (por ejemplo, g++).
+- Asegúrarse de tener instalado Python 3 en el computador.
 
 - En caso de OS Windows asegúrarse de tener instalado una herramienta (MinGW) para acceder al Make.
 
@@ -10,34 +10,18 @@
 
 - La documentación de la parte práctica número dos se enucntran más abajo en el README.md
 
-### Acceso 
-1. Al encontrarse en la carpeta TAREA_DOS del repositorio ie0217 ejecute el comando:
 
-    ```
-   cd .\src\
-   ```
+### Ejecución
 
-### Compilación
-
-1. Ejecute alguno de los siguientes comandos para para compilar y ejecutar el programa al mismo tiempo:
+1. Ejecute alguno de los siguientes comandos para para ejecutar el programa en Python 3:
 
     ```
     make
     make all
+    make run
     ```
 
-1. También puede ejecutar el siguiente comando para compilar el programa:
-
-   ```
-   make build
-   ```
-1. También puede ejecutar el siguiente comando para ejecutar el programa:
-
-    ```
-   make run
-   ```
-
-1. Una vez finalice el programa ejecute el siguiente comando para borrar los ejecutables generados:
+1. Una vez finalice el programa ejecute el siguiente comando para borrar el pycache generado:
 
     ```
    make clean
