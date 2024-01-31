@@ -1,5 +1,5 @@
 from Alergia import Alergia
-import cProfile
+# import cProfile
 import math
 
 
@@ -9,28 +9,38 @@ class TiposDeAlergias(Alergia):
     Hereda de la clase Alergia.
 
     Atributos:
-        nombreNoEncontrado (list): Lista para almacenar nombres de alergias no encontradas.
-        valorNoEncontrado (list): Lista para almacenar valores de alergias no encontradas.
-        listaFinal (list): Lista final que contiene instancias de la clase Alergia.
+        nombreNoEncontrado (list): Lista para almacenar
+        nombres de alergias no encontradas.
+        valorNoEncontrado (list): Lista para almacenar
+        valores de alergias no encontradas.
+        listaFinal (list): Lista final que contiene
+        instancias de la clase Alergia.
 
     Métodos:
-        - VerificarInt: Método para verificar que la entrada del usuario sea un número entero positivo.
-        - VerificarPotencia2: Método para verificar que la entrada del usuario sea una potencia de 2 positiva.
-        - VerificarStr: Método para verificar que la entrada del usuario sea un nombre no vacío.
+        - VerificarInt: Método para verificar que la
+        entrada del usuario sea un número entero positivo.
+        - VerificarPotencia2: Método para verificar que la
+        entrada del usuario sea una potencia de 2 positiva.
+        - VerificarStr: Método para verificar que la entrada
+        del usuario sea un nombre no vacío.
         - ingresarNombre: Método para ingresar alergias por nombre.
         - ingresarValor: Método para ingresar alergias por valor.
-        - ingresarNombreValor: Método para ingresar alergias por nombre y valor.
+        - ingresarNombreValor: Método para ingresar alergias
+        por nombre y valor.
     """
+
     def __init__(self):
         """
         Constructor de la clase TiposDeAlergias.
-        Inicializa las listas de nombres no encontrados, valores no encontrados y la lista final.
+        Inicializa las listas de nombres no encontrados,
+        valores no encontrados y la lista final.
         """
         self.nombreNoEncontrado = []
         self.valorNoEncontrado = []
         self.listaFinal = []
 
-    def VerificarInt(self, mensajeusuario, mensajeerror = "No es un número válido, verifique"):
+    def VerificarInt(self, mensajeusuario,
+                     mensajeerror="No es un número válido, verifique"):
         """
         Verifica que la entrada del usuario sea un número entero positivo.
 
@@ -43,7 +53,7 @@ class TiposDeAlergias(Alergia):
         """
         valor_legal = False
         # Pide el valor hasta que se ingrese uno correcto
-        while valor_legal == False:
+        while not valor_legal:
             try:
                 valorusuario = int((input(mensajeusuario)))
                 # Si es mayor que 0
@@ -52,12 +62,13 @@ class TiposDeAlergias(Alergia):
                 else:
                     # Sino imprime el mensaje de error
                     print(mensajeerror)
-            except:
+            except ValueError:
                 # Si encuentra un error imprime el mensaje de error
                 print(mensajeerror)
         return (valorusuario)
 
-    def VerificarPotencia2(self, mensajeusuario, mensajeerror = "No es un número válido, verifique"):
+    def VerificarPotencia2(self, mensajeusuario,
+                           mensajeerror="No es un número válido, verifique"):
         """
         Verifica que la entrada del usuario sea una potencia de 2 positiva.
 
@@ -69,21 +80,22 @@ class TiposDeAlergias(Alergia):
             int: Valor de potencia de 2 positivo ingresado por el usuario.
         """
         valor_legal = False
-        while valor_legal == False:
+        while not valor_legal:
             try:
                 valorusuario = int((input(mensajeusuario)))
-                # Si al despejar la potencia es entero 
+                # Si al despejar la potencia es entero
                 if math.log2(valorusuario).is_integer() and valorusuario > 0:
                     valor_legal = True
                 else:
                     # Sino imprime el mensaje de error
                     print(mensajeerror)
-            except:
+            except ValueError:
                 # Si encuentra un error imprime el mensaje de error
                 print(mensajeerror)
         return (valorusuario)
 
-    def VerificarStr(self, mensajeusuario, mensajeerror="No es un nombre válido, verifique"):
+    def VerificarStr(self, mensajeusuario,
+                     mensajeerror="No es un nombre válido, verifique"):
         """
         Verifica si un string es válido.
 
@@ -96,7 +108,7 @@ class TiposDeAlergias(Alergia):
         """
         valor_legal = False
         # Pide el nombre hasta que se ingrese uno correcto
-        while valor_legal == False:
+        while not valor_legal:
             try:
                 valorusuario = (input(mensajeusuario))
                 # Verifica si el str no está vacío
@@ -105,7 +117,7 @@ class TiposDeAlergias(Alergia):
                 else:
                     # Sino devuelve el mensaje
                     print(mensajeerror)
-            except:
+            except ValueError:
                 # Si encuentra un error devueleve el mensaje
                 print(mensajeerror)
         return (valorusuario)
@@ -124,17 +136,18 @@ class TiposDeAlergias(Alergia):
             for alergia in Alergia.alergiasSistema:
                 yaEsta = False
                 # Si encuentra la alergia
-                if alergia == nombre:
+                if alergia == nombre.lower():
                     # Busca si ya está en la lista final
                     for final in self.listaFinal:
                         # Si ya está se marca verdadera la variable
-                        if final.nombreAlergia == alergia:
+                        if final.nombreAlergia == alergia.lower():
                             print("El nombre ya se encuentra en la lista")
                             yaEsta = True
                     # Rompe el ciclo
-                    if yaEsta == True:
+                    if yaEsta is True:
                         break
-                    # Sino, hace un nuevo objeto con los datos y lo agrega a la lista final
+                    # Sino, hace un nuevo objeto con los datos y lo
+                    # agrega a la lista final
                     nueva_alergia = Alergia(
                         nombre=alergia, valor=Alergia.alergiasSistema[alergia])
                     self.listaFinal.append(nueva_alergia)
@@ -165,9 +178,10 @@ class TiposDeAlergias(Alergia):
                             print("El valor ya se encuentra en la lista")
                             yaEsta = True
                     # Rompe el ciclo
-                    if yaEsta == True:
+                    if yaEsta is True:
                         break
-                    # Sino, hace un nuevo objeto con los datos y lo agrega a la lista final
+                    # Sino, hace un nuevo objeto con los datos y
+                    # lo agrega a la lista final
                     nueva_alergia = Alergia(nombre=alergia, valor=valor)
                     self.listaFinal.append(nueva_alergia)
                     break
@@ -189,5 +203,5 @@ class TiposDeAlergias(Alergia):
             valor = self.VerificarPotencia2(
                 "Ingrese el valor de la alergia número " + str(i + 1) + ": ")
             # Crea directamente un objeto nuevo y lo agrega a la lista final
-            nueva_alergia = Alergia(nombre=nombre, valor=valor)
+            nueva_alergia = Alergia(nombre=nombre.lower(), valor=valor)
             self.listaFinal.append(nueva_alergia)

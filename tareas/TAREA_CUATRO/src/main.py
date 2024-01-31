@@ -1,8 +1,8 @@
 from EvaluacionEspecifica import EvaluacionEspecifica
 from TiposDeAlergia import TiposDeAlergias
 from EvaluacionGeneral import EvaluacionGeneral
-import timeit
-import cProfile
+# import timeit
+# import cProfile
 
 
 def mostrarMenu():
@@ -28,7 +28,8 @@ def menuDos():
 
 def VerificarOpcion1(mensajeusuario, mensajeerror="No es una opción válida"):
     """
-    Verifica y obtiene la opción ingresada por el usuario para el menú principal.
+    Verifica y obtiene la opción ingresada por el usuario
+    para el menú principal.
 
     :param mensajeusuario: Mensaje para solicitar la opción al usuario.
     :param mensajeerror: Mensaje de error a mostrar si la opción no es válida.
@@ -36,16 +37,17 @@ def VerificarOpcion1(mensajeusuario, mensajeerror="No es una opción válida"):
     """
     valor_legal = False
     # Pide el valor hasta que se ingrese uno correcto
-    while valor_legal == False:
+    while not valor_legal:
         try:
             valorusuario = input(mensajeusuario)
             # Verifica si la opción ingresada está dentro de las opciones
-            if valorusuario == "1" or valorusuario == "2" or valorusuario == "3" or valorusuario == "4":
+            if (valorusuario == "1" or valorusuario == "2" or
+                    valorusuario == "3" or valorusuario == "4"):
                 valor_legal = True
             else:
                 # Sino imprime el mensaje de error
                 print(mensajeerror)
-        except:
+        except ValueError:
             # Si encuentra un error imprime el mensaje
             print(mensajeerror)
     return (valorusuario)
@@ -61,22 +63,24 @@ def VerificarOpcion2(mensajeusuario, mensajeerror="No es una opción válida"):
     """
     valor_legal = False
     # Pide el valor hasta que se ingrese uno correcto
-    while valor_legal == False:
+    while not valor_legal:
         try:
             valorusuario = input(mensajeusuario).lower()
             # Verifica si la opción ingresada está dentro de las opciones
-            if valorusuario == "a" or valorusuario == "b" or valorusuario == "c" or valorusuario == "d":
+            if (valorusuario == "a" or valorusuario == "b"
+                    or valorusuario == "c" or valorusuario == "d"):
                 valor_legal = True
             else:
                 # Sino imprime el mensaje
                 print(mensajeerror)
-        except:
+        except ValueError:
             # Si encuentra un error imprime el mensaje
             print(mensajeerror)
     return (valorusuario)
 
 
-def VerificarInt(mensajeusuario, mensajeerror="No es un número válido, verifique"):
+def VerificarInt(mensajeusuario,
+                 mensajeerror="No es un número válido, verifique"):
     """
     Verifica y obtiene un número entero ingresado por el usuario.
 
@@ -85,7 +89,7 @@ def VerificarInt(mensajeusuario, mensajeerror="No es un número válido, verifiq
     :return: Número entero válido ingresado por el usuario.
     """
     valor_legal = False
-    while valor_legal == False:
+    while not valor_legal:
         try:
             valorusuario = int((input(mensajeusuario)))
             # Verifica que sea positivo
@@ -94,7 +98,7 @@ def VerificarInt(mensajeusuario, mensajeerror="No es un número válido, verifiq
             else:
                 # Sino imprime el mensaje
                 print(mensajeerror)
-        except:
+        except ValueError:
             # Si encuentra un error imprime el mensaje
             print(mensajeerror)
     return (valorusuario)
@@ -104,7 +108,8 @@ def procesarOpcion():
     """
     Función principal que maneja la ejecución del programa.
 
-    Muestra el menú principal y realiza las acciones correspondientes según la opción ingresada por el usuario.
+    Muestra el menú principal y realiza las acciones
+    correspondientes según la opción ingresada por el usuario.
     """
     while True:
         mostrarMenu()
@@ -139,29 +144,33 @@ def procesarOpcion():
                     general = EvaluacionGeneral()
                     # LLama calcular puntuación
                     general.calcularPuntuacion(tipo.listaFinal)
-                    total = len(
-                        tipo.listaFinal) + len(tipo.nombreNoEncontrado) + len(tipo.valorNoEncontrado)
+                    total = len(tipo.listaFinal) + len(
+                        tipo.nombreNoEncontrado) + len(tipo.valorNoEncontrado)
                     # Llama calcular promedio
                     general.calcularPromedio(total, len(tipo.listaFinal))
-                    # Si las listas de datos desconodios no están vacías las imprime
+                    # Si las listas de datos desconodios no están vacías
                     if len(tipo.nombreNoEncontrado) != 0:
-                        print("\nLos nombres desconocidos de alergias son: ")
+                        print("Los nombres desconocidos de alergias son: ")
                         general.resultadosDesconocidos(tipo.nombreNoEncontrado)
+                        print("\n")
 
                     if len(tipo.valorNoEncontrado) != 0:
-                        print("\nLos nombres desconocidos de alergias son: ")
+                        print("Los nombres desconocidos de alergias son: ")
                         general.resultadosDesconocidos(tipo.valorNoEncontrado)
+                        print("\n")
                     break
         elif opc == "3":
             evaluacion = EvaluacionEspecifica()
             evaluacion.AgregarAlergia()
         else:
+            print("Saliendo del programa...")
             break
+
 
 # Llama procesarOpcion()
 procesarOpcion()
 
 """
-tiempo_ejecucion = timeit.timeit(procesarOpcion, number=1) 
+tiempo_ejecucion = timeit.timeit(procesarOpcion, number=1)
 print(f'Tiempo de ejecución: {tiempo_ejecucion} segundos')
 """

@@ -5,7 +5,7 @@ class Alergia():
 
     # Implementación para la segunda parte práctica
     """
-    nombre_archivo = "C:\\Users\\Usuario\\Desktop\\ie0217\\ie0217\\tareas\\TAREA_CUATRO\\src\\Alergias.txt"
+    nombre_archivo = 'Alergias.txt'
 
     # Inicializar el diccionario
     alergiasSistema = {}
@@ -30,9 +30,12 @@ class Alergia():
 
     """
 
-    # Diccionario que almacenará el nombre de la alergia como clave y su valor como valor.
-    alergiasSistema = {"huevo": 1, "cacahuetes": 2, "mariscos": 4, "fresas": 8, "tomates": 16,
-                       "chocolate": 32, "polen": 64, "gatos": 128, "sardina": 256, "glúten": 512}
+    # Diccionario que almacenará el nombre de la alergia
+    # como clave y su valor como valor.
+    alergiasSistema = {"huevo": 1, "cacahuetes": 2, "mariscos": 4,
+                       "fresas": 8, "tomates": 16, "chocolate": 32,
+                       "polen": 64, "gatos": 128, "sardina": 256,
+                       "glúten": 512}
 
     def __init__(self, nombre, valor):
         """
