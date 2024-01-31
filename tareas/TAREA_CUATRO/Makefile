@@ -5,11 +5,11 @@ TARGET = src/main.py
 
 # Comando all
 all:
-	python $(TARGET)
+	python3 $(TARGET)
 
 # Comando run
 run:
-	python $(TARGET)
+	python3 $(TARGET)
 
 # Comando clean
 clean:
