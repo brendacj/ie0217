@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 # Datos para el ejemplo
 # fuente
 np.random.seed(42) 
-#100 puntos bidimensionales en un rango-de-@ a 10
+#100 puntos bidimensionales en un rango de 0 a 100
 X = np.random.rand(100, 2) * 10
 
 
@@ -19,7 +19,7 @@ for k in range(1, 11):
     # Ajusta
     kmeans.fit(X)
     # Agrega a la lista
-    inertias.append(kmeans.inertia_) # 11 elemntos
+    inertias.append(kmeans.inertia_) # 11 elementos
 
 # Grafico de linea según las inercias
 plt.plot(range(1, 11), inertias, marker='o')
