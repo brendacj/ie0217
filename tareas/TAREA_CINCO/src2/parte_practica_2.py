@@ -67,8 +67,43 @@ def resumenGeneral():
     return(promPorEstudiante, maximoPorEstudiante, sumatoriaPorAsignatura, promPorAsigantura)
 
 
+def imprimir(promPorEstudiante, maximoPorEstudiante, sumatoriaPorAsignatura, promPorAsigantura):
 
+    df= pd.DataFrame(calificaciones, columns=asignaturas)
+    df.insert(0, 'Estudiante', nombres)
+    print("\n### Tabla de datos ###")
+    print(df)
+    """
+    df1= pd.DataFrame([sumatoriaPorAsignatura], columns=asignaturas)
+    print("\nSumatoria por asignatura")
+    print(df1)
+    df2= pd.DataFrame([promPorAsigantura], columns=asignaturas)
+    print("\nPromedio por asignatura")
+    print(df2)
+    """
+    df1= pd.DataFrame(sumatoriaPorAsignatura, columns=["Sumatoria"])
+    df1.insert(0, 'Asignatura', asignaturas)
+    print("\n## Sumatoria por asignatura ##")
+    print(df1)
 
+    df2= pd.DataFrame(promPorAsigantura, columns=["Promedio"])
+    df2.insert(0, 'Asignatura', asignaturas)
+    print("\n## Promedio por asignatura ##")
+    print(df2)
 
+    df3= pd.DataFrame(promPorEstudiante, columns=["Promedio"])
+    df3.insert(0, 'Estudiante', nombres)
+    print("\n## Promedio por estudiante ##")
+    print(df3)
 
+    df4= pd.DataFrame(maximoPorEstudiante, columns=["Nota"])
+    df4.insert(0, 'Estudiante', nombres)
+    print("\n## Nota máxima por estudiante ##")
+    print(df4)
+
+def main():
+    promPorEstudiante, maximoPorEstudiante, sumatoriaPorAsignatura, promPorAsigantura = resumenGeneral()
+    imprimir(promPorEstudiante, maximoPorEstudiante, sumatoriaPorAsignatura, promPorAsigantura)
+
+main()
 #resumenGeneral()
