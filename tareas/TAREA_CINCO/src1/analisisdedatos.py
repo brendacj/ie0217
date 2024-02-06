@@ -45,5 +45,26 @@ class AnalisisDeDatos():
         valoresAtipicos = self.datos.aerolineas[(self.datos.aerolineas[columna] < umbralInferior) | (self.datos.aerolineas[columna] > umbralSuperior)]
         return(valoresAtipicos)
 
+    def generadorInfo(self):
+        gruposAerolineas = self.datos.aerolineas.groupby('UNIQUE_CARRIER_NAME')
+
+        for aerolinea, filas in gruposAerolineas:
+            numViajes = len(filas)
+            sumPasajeros = filas['PASSENGERS'].sum()
+            yield aerolinea, numViajes, sumPasajeros
+
+    def imprimirInformes(self):
+        # Inicializa un DataFrame vacío
+        columnas = ['Aerolínea', 'Número de Viajes', 'Suma de Pasajeros']
+        df1 = pd.DataFrame(columns=columnas)
+        for aerolinea, numViajes, sumPasajeros in self.generadorInfo():
+            # Agrega una nueva fila al DataFrame
+            df1.loc[len(df1)] = [aerolinea, numViajes, sumPasajeros]
+
+        print(df1)
+
+    
+
 objeto = AnalisisDeDatos()
 objeto.ValoresDescriptivos()
+objeto.imprimirInformes()
