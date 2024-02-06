@@ -1,7 +1,9 @@
 import pandas as pd
 
 
+
 class ObtencionDatos():
+    
     def __init__ (self):
         self.archivo = 'aerolineas.csv'
         self.aerolineas = pd.DataFrame()
