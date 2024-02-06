@@ -45,25 +45,46 @@ class AnalisisDeDatos():
         valoresAtipicos = self.datos.aerolineas[(self.datos.aerolineas[columna] < umbralInferior) | (self.datos.aerolineas[columna] > umbralSuperior)]
         return(valoresAtipicos)
 
-    def generadorInfo(self):
+    def generadorViajes(self):
         gruposAerolineas = self.datos.aerolineas.groupby('UNIQUE_CARRIER_NAME')
 
         for aerolinea, filas in gruposAerolineas:
             numViajes = len(filas)
+            sumDistancias = filas['DISTANCE'].sum()
+            yield aerolinea, numViajes, sumDistancias
+    
+    def generadorPasajeros(self):
+        gruposAerolineas = self.datos.aerolineas.groupby('UNIQUE_CARRIER_NAME')
+
+        for aerolinea, filas in gruposAerolineas:
+            #filasCoinciden = df[df['CLASS'] == "F"]
+            filasClaseF = filas[filas['CLASS'] == 'F']
+            sumaClaseF = filasClaseF['PASSENGERS'].sum()
+
+            filasClaseL = filas[filas['CLASS'] == 'L']
+            sumaClaseL = filasClaseL['PASSENGERS'].sum()
+            #sumaClaseF = filasCoinciden['PASSENGERS'].tolist()
             sumPasajeros = filas['PASSENGERS'].sum()
-            yield aerolinea, numViajes, sumPasajeros
+            yield aerolinea, sumPasajeros, sumaClaseF, sumaClaseL
 
     def imprimirInformes(self):
         # Inicializa un DataFrame vacío
-        columnas = ['Aerolínea', 'Número de Viajes', 'Suma de Pasajeros']
-        df1 = pd.DataFrame(columns=columnas)
-        for aerolinea, numViajes, sumPasajeros in self.generadorInfo():
+        columnas1 = ['Aerolínea', 'Número de Viajes', 'Suma de Distancias']
+        df1 = pd.DataFrame(columns=columnas1)
+        for aerolinea, numViajes, sumDistancias in self.generadorViajes():
             # Agrega una nueva fila al DataFrame
-            df1.loc[len(df1)] = [aerolinea, numViajes, sumPasajeros]
+            df1.loc[len(df1)] = [aerolinea, numViajes, sumDistancias]
+        
+        columnas2 = ['Aerolínea', 'Suma de pasajeros', 'Pasajeros en clase F', 'Pasajeros en clase L']
+        df2 = pd.DataFrame(columns=columnas2)
+        for aerolinea, sumPasajeros, sumaClaseF, sumaClaseL in self.generadorPasajeros():
+            # Agrega una nueva fila al DataFrame
+            df2.loc[len(df2)] = [aerolinea, sumPasajeros, sumaClaseF, sumaClaseL]
 
         print(df1)
+        print(df2)
 
-    
+
 
 objeto = AnalisisDeDatos()
 objeto.ValoresDescriptivos()
