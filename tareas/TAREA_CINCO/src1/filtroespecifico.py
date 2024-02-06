@@ -3,10 +3,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 class FiltroEspecifico():
     # Constructor
-    def __init__ (self):
+    def __init__ (self, distancia, pasajeros):
         self.datos = ObtencionDatos()
         self.datos.obtencionLimpieza()
         self.indice_actual = 0
+        self.distancia = distancia
+        self.pasajeros = pasajeros
     # Método mágico iter
     def __iter__ (self):
         return self
@@ -18,14 +20,10 @@ class FiltroEspecifico():
         fila_actual = self.datos.aerolineas.iloc[self.indice_actual]
         self.indice_actual += 1
 
-        while fila_actual['DISTANCE'] <= 3500 or fila_actual['PASSENGERS'] >= 300 :
+        while fila_actual['DISTANCE'] <= self.distancia or fila_actual['PASSENGERS'] >= self.pasajeros :
             if self.indice_actual >= len(self.datos.aerolineas):
                 raise StopIteration
             fila_actual = self.datos.aerolineas.iloc[self.indice_actual]
             self.indice_actual += 1
 
         return fila_actual
-            
-filtro_aerolinea = FiltroEspecifico()
-df_filtrado = pd.DataFrame([fila for fila in filtro_aerolinea], columns=filtro_aerolinea.datos.aerolineas.columns)
-print(df_filtrado)

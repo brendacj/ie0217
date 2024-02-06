@@ -99,6 +99,9 @@ class AnalisisDeDatos():
         for aerolinea, numViajes, sumDistancias in self.generadorViajes():
             # Agrega una nueva fila al DataFrame
             df1.loc[len(df1)] = [aerolinea, numViajes, sumDistancias]
+
+        valor_maximo = df1['Suma de Distancias'].max()
+        print(valor_maximo)
         
         columnas2 = ['Aerolínea', 'Suma de pasajeros', 'Pasajeros en clase F', 'Pasajeros en clase L']
         df2 = pd.DataFrame(columns=columnas2)
@@ -106,35 +109,7 @@ class AnalisisDeDatos():
             # Agrega una nueva fila al DataFrame
             df2.loc[len(df2)] = [aerolinea, sumPasajeros, sumaClaseF, sumaClaseL]
         
-        self.valoresAtipicos('Suma de pasajeros', df2)
-        self.cajaBigotes('Suma de pasajeros', df2)
-        """
-        # Trazar las barras para columna1
-        plt.bar(range(len(df2['Suma de pasajeros'])), df2['Pasajeros en clase F'], color='blue', label='Columna 1')
+        #self.valoresAtipicos('Suma de pasajeros', df2)
+        #self.cajaBigotes('Suma de Distancias', df1)
 
-        # Trazar las barras para columna2
-        plt.bar(range(len( df2['Suma de pasajeros'])), df2['Suma de pasajeros'], color='red', label='Columna 2')
-
-        # Agregar etiquetas y título
-        plt.xlabel('Índice')
-        plt.ylabel('Valores')
-        plt.title('Comparación de Columna 1 y Columna 2')
-        plt.legend()
-
-        # Mostrar el gráfico
-        plt.show()
-        """
-
-        print(df1)
-        print(df2)
-
-
-
-objeto = AnalisisDeDatos()
-objeto.imprimirInformes()
-"""
-objeto.ValoresDescriptivos()
-objeto.identificarTendencias('DISTANCE')
-objeto.encontrarTendencias()
-objeto.valoresAtipicos('PASSENGERS')
-"""
+        return(df1, df2)

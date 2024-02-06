@@ -22,7 +22,3 @@ class ObtencionDatos():
             print("El archivo no se encontró. Verifique")
         except Exception as e:
             print(f"Se produjo un error inesperado durante la carga de datos: {e}")
-
-
-        # Mostrar los de aerolineas
-        print(self.aerolineas.head())

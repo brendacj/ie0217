@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 class FiltroPorAerolinea():
     # Constructor
-    def __init__ (self):
+    def __init__ (self, columna):
         self.datos = ObtencionDatos()
         self.datos.obtencionLimpieza()
         self.indice_actual = 0
+        self.columna = columna
     # Método mágico iter
     def __iter__ (self):
         return self
@@ -18,14 +19,10 @@ class FiltroPorAerolinea():
         fila_actual = self.datos.aerolineas.iloc[self.indice_actual]
         self.indice_actual += 1
 
-        while fila_actual['UNIQUE_CARRIER_NAME'] != 'ADVANCED AIR, LLC':
+        while fila_actual['UNIQUE_CARRIER_NAME'] != self.columna:
             if self.indice_actual >= len(self.datos.aerolineas):
                 raise StopIteration
             fila_actual = self.datos.aerolineas.iloc[self.indice_actual]
             self.indice_actual += 1
 
         return fila_actual
-            
-filtro_aerolinea = FiltroPorAerolinea()
-df_filtrado = pd.DataFrame([fila for fila in filtro_aerolinea], columns=filtro_aerolinea.datos.aerolineas.columns)
-print(df_filtrado)
