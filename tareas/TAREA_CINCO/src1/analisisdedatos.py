@@ -1,6 +1,7 @@
 from obtenciondatos import ObtencionDatos
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
 
 class AnalisisDeDatos():
     def __init__ (self):
@@ -13,28 +14,29 @@ class AnalisisDeDatos():
     def identificarTendencias(self, columna):
         ## Para visualizar tendencias (média movil)
         promedioRolling = self.datos.aerolineas[columna].rolling(window=10).mean()
-        return(promedioRolling)
-        """
-        datos.aerolineas['DISTANCE'].plot()
-        promedioRolling.plot()
+
+        # Crear el gráfico de línea con Seaborn
+        sns.lineplot(data=self.datos.aerolineas, x=self.datos.aerolineas.index, y=columna, label='Original')
+        sns.lineplot(x=promedioRolling.index, y=promedioRolling, color='red', label='Promedio Móvil')
+        plt.xlabel('Índice')
+        plt.ylabel(columna)
+        plt.title('Comparación de ' + columna + ' con Promedio Móvil')
+        plt.legend()
         plt.show()
-        """
 
     def encontrarTendencias(self):
         # Matriz de correlación, se puede visualizar con un heatmap() de seaborn
         # Encontrar patrones
-        matriz_correlacion = self.datos.aerolineas.corr()
-        """
-        plt.figure(figsize=(10, 7))
-        sns.heatmap(correlation_matrix, annot=True)
+        matriz_correlacion = self.datos.aerolineas[['DISTANCE', 'PASSENGERS']].corr()
+        sns.heatmap(matriz_correlacion, annot=True, cmap='coolwarm', fmt=".2f")
+        plt.title('Mapa de Calor de la Matriz de Correlación')
         plt.show()
-        """
-        return(matriz_correlacion)
 
-    def valoresAtipicos(self, columna):
+    def valoresAtipicos(self, columna, data):
         # Calcula el rango intercuartil
-        Q1 = self.datos.aerolineas[columna].quantile(0.25)
-        Q3 = self.datos.aerolineas[columna].quantile(0.75)
+        #self.datos.aerolineas = self.datos.aerolineas.sort_values(by='DISTANCE')
+        Q1 = data[columna].quantile(0.25)
+        Q3 = data[columna].quantile(0.75)
         IQR = Q3 - Q1
 
         # Umbrales para valores atípicos
@@ -42,8 +44,31 @@ class AnalisisDeDatos():
         umbralSuperior = Q3 + 1.5 * IQR
 
         # Encuentra valores atípicos
-        valoresAtipicos = self.datos.aerolineas[(self.datos.aerolineas[columna] < umbralInferior) | (self.datos.aerolineas[columna] > umbralSuperior)]
-        return(valoresAtipicos)
+        valoresAtipicos = data[(data[columna] < umbralInferior) | (data[columna] > umbralSuperior)]
+        
+    
+        # Graficar los datos originales y los valores atípicos
+        plt.figure(figsize=(10, 6))
+        plt.scatter(data.index, data[columna], label='Datos Originales')
+        plt.scatter(valoresAtipicos.index, valoresAtipicos[columna], color='red', label='Valores Atípicos')
+        plt.xlabel('Índice')
+        plt.ylabel(columna)
+        plt.title('Valores Atípicos en la Columna ' + columna)
+        plt.legend()
+        plt.show()
+
+    def cajaBigotes(self, columna, data):
+        # Crear el gráfico de caja
+        plt.boxplot(data[columna])
+
+        # Agregar etiquetas y título
+        plt.xlabel(columna)
+        plt.ylabel('Valores')
+        plt.title('Gráfico de Caja para la Columna ' + columna)
+
+        # Mostrar el gráfico
+        plt.show()
+    
 
     def generadorViajes(self):
         gruposAerolineas = self.datos.aerolineas.groupby('UNIQUE_CARRIER_NAME')
@@ -80,6 +105,25 @@ class AnalisisDeDatos():
         for aerolinea, sumPasajeros, sumaClaseF, sumaClaseL in self.generadorPasajeros():
             # Agrega una nueva fila al DataFrame
             df2.loc[len(df2)] = [aerolinea, sumPasajeros, sumaClaseF, sumaClaseL]
+        
+        self.valoresAtipicos('Suma de pasajeros', df2)
+        self.cajaBigotes('Suma de pasajeros', df2)
+        """
+        # Trazar las barras para columna1
+        plt.bar(range(len(df2['Suma de pasajeros'])), df2['Pasajeros en clase F'], color='blue', label='Columna 1')
+
+        # Trazar las barras para columna2
+        plt.bar(range(len( df2['Suma de pasajeros'])), df2['Suma de pasajeros'], color='red', label='Columna 2')
+
+        # Agregar etiquetas y título
+        plt.xlabel('Índice')
+        plt.ylabel('Valores')
+        plt.title('Comparación de Columna 1 y Columna 2')
+        plt.legend()
+
+        # Mostrar el gráfico
+        plt.show()
+        """
 
         print(df1)
         print(df2)
@@ -87,5 +131,10 @@ class AnalisisDeDatos():
 
 
 objeto = AnalisisDeDatos()
-objeto.ValoresDescriptivos()
 objeto.imprimirInformes()
+"""
+objeto.ValoresDescriptivos()
+objeto.identificarTendencias('DISTANCE')
+objeto.encontrarTendencias()
+objeto.valoresAtipicos('PASSENGERS')
+"""
