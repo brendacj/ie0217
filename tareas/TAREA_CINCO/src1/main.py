@@ -45,10 +45,22 @@ def main():
     print(df1)
 
     print("\n⛥⛥⛥⛥"
+          " Informe de Viajes por Aerolinea"
+          " (5 primera aerolíneas con más vuelos) "
+          "⛥⛥⛥⛥\n")
+    print(df1.sort_values(by='Número de Viajes', ascending=False). head(5))
+
+    print("\n⛥⛥⛥⛥"
           " Informe de Pasajeros por Aerolinea"
           " (Pasajerso totales y según clase) "
           "⛥⛥⛥⛥\n")
     print(df2)
+
+    print("\n⛥⛥⛥⛥"
+          " Informe de Pasajeros por Aerolinea"
+          " (primeras 5 aerolineas con más pasajeros) "
+          "⛥⛥⛥⛥\n")
+    print(df2.sort_values(by='Suma de pasajeros', ascending=False). head(5))
 
     analisis.valoresAtipicos('Pasajeros en clase L', df2)
     analisis.cajaBigotes('Número de Viajes', df1)

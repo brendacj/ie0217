@@ -14,8 +14,10 @@ class ObtencionDatos():
             self.aerolineas = pd.read_csv(self.archivo)
             # Eliminar las filas con valores nulos
             self.aerolineas = self.aerolineas.dropna()
-            # Asegurarse de que los tipos de las columnas relacionadas con los id o meses sean enteros
-            self.aerolineas[['ORIGIN_AIRPORT_ID', 'DEST_AIRPORT_ID', 'MONTH']] = self.aerolineas[['ORIGIN_AIRPORT_ID', 'DEST_AIRPORT_ID', 'MONTH']].astype(int)
+            # Eliminar columnas innecesarias
+            columnasEliminar = ['ORIGIN_AIRPORT_ID', 'DEST_AIRPORT_ID', 'MONTH']  # Lista de nombres de las columnas a eliminar
+            self.aerolineas = self.aerolineas.drop(columnasEliminar, axis=1)
+
             # Asegurarse de que los tipos de la columnas de distancias sean floats
             self.aerolineas[['PASSENGERS', 'DISTANCE']] = self.aerolineas[['PASSENGERS', 'DISTANCE']].astype(float)
         except FileNotFoundError:
