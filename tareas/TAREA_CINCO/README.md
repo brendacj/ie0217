@@ -1,4 +1,4 @@
-# TAREA CUATRO
+# TAREA CINCO
 ## Intrucciones de ejecución
 
 ### Requisitos previos
@@ -8,26 +8,20 @@
 
 - Las respuestas a las preguntas teóricas se encuentran más abajo en el README.md.
 
-- La documentación de la parte práctica número dos se enucntran más abajo en el README.md
+- El análisis para la parte práctica 1 se encuentra más abajo en el README.md
 
 
 ### Ejecución
 
-1. Ejecute alguno de los siguientes comandos para para ejecutar el programa en Python 3:
+Una vez dentro de la carpeta TAREA_CINCO, ejecute alguno de los siguientes comandos para para ejecutar los programas en Python 3 (Se ejecutará uno después del otro):
 
-    ```
-    make
-    make all
-    make run
-    ```
-
-1. Una vez finalice el programa ejecute el siguiente comando para borrar el pycache generado:
-
-    ```
-   make clean
-   ```
+```
+make
+make all
+```
 
 ### Uso del programa
+No se trata de un programa interactivo, por lo que al ejecutarlo se mostrarán las tablas y gráficos de los programas y finalizará la ejecución, solo es necesario observar las impresiones y revisar el análisis más abajo en el README.md.
 
 ## Parte teórica
 
