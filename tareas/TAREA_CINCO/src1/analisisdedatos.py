@@ -18,20 +18,26 @@ class AnalisisDeDatos():
         # Crear el gráfico de línea con Seaborn
         sns.lineplot(data=self.datos.aerolineas, x=self.datos.aerolineas.index, y=columna, label='Original')
         sns.lineplot(x=promedioRolling.index, y=promedioRolling, color='red', label='Promedio Móvil')
-        plt.xlabel('Índice')
+        plt.xlabel('Vuelos')
         plt.ylabel(columna)
-        plt.title('Comparación de ' + columna + ' con Promedio Móvil')
+        plt.title('Comparación de ' + columna + ' y Promedio Móvil')
         plt.legend()
         plt.show()
 
-    def encontrarTendencias(self):
-        # Matriz de correlación, se puede visualizar con un heatmap() de seaborn
-        # Encontrar patrones
-        matriz_correlacion = self.datos.aerolineas[['DISTANCE', 'PASSENGERS']].corr()
-        sns.heatmap(matriz_correlacion, annot=True, cmap='coolwarm', fmt=".2f")
-        plt.title('Mapa de Calor de la Matriz de Correlación')
+    def encontrarTendencias(self, dataset):
+        # Crea un DataFrame temporal con las columnas específicas del dataset
+        df_temporal = dataset[ ['Suma de pasajeros', 'Pasajeros en clase F', 'Pasajeros en clase L']]
+        
+        # Crea el gráfico de barras con Seaborn
+        sns.barplot(data=df_temporal)
+        
+        # Personaliza el gráfico (opcional)
+        plt.title('Promedios de sumas de pasajeros, total y clases')
+        plt.xlabel('Sumas de pasajeros')
+        plt.ylabel('Promedios de sus valores')
+        
+        # Muestra el gráfico
         plt.show()
-
     def valoresAtipicos(self, columna, data):
         # Calcula el rango intercuartil
         #self.datos.aerolineas = self.datos.aerolineas.sort_values(by='DISTANCE')
@@ -51,7 +57,7 @@ class AnalisisDeDatos():
         plt.figure(figsize=(10, 6))
         plt.scatter(data.index, data[columna], label='Datos Originales')
         plt.scatter(valoresAtipicos.index, valoresAtipicos[columna], color='red', label='Valores Atípicos')
-        plt.xlabel('Índice')
+        plt.xlabel('Aerolineas')
         plt.ylabel(columna)
         plt.title('Valores Atípicos en la Columna ' + columna)
         plt.legend()
@@ -62,8 +68,8 @@ class AnalisisDeDatos():
         plt.boxplot(data[columna])
 
         # Agregar etiquetas y título
-        plt.xlabel(columna)
-        plt.ylabel('Valores')
+        plt.xlabel('Aerolineas')
+        plt.ylabel(columna)
         plt.title('Gráfico de Caja para la Columna ' + columna)
 
         # Mostrar el gráfico
@@ -100,8 +106,13 @@ class AnalisisDeDatos():
             # Agrega una nueva fila al DataFrame
             df1.loc[len(df1)] = [aerolinea, numViajes, sumDistancias]
 
-        valor_maximo = df1['Suma de Distancias'].max()
-        print(valor_maximo)
+        valor_maximo = df1['Suma de Distancias'].idxmax()
+        print(df1.loc[valor_maximo, 'Aerolínea'])
+
+        valor_maximo = df1['Número de Viajes'].idxmax()
+        print(df1.loc[valor_maximo, 'Aerolínea'])
+
+
         
         columnas2 = ['Aerolínea', 'Suma de pasajeros', 'Pasajeros en clase F', 'Pasajeros en clase L']
         df2 = pd.DataFrame(columns=columnas2)
@@ -111,5 +122,9 @@ class AnalisisDeDatos():
         
         #self.valoresAtipicos('Suma de pasajeros', df2)
         #self.cajaBigotes('Suma de Distancias', df1)
+        valor_maximo = df2['Pasajeros en clase F'].idxmax()
+        print(df2.loc[valor_maximo, 'Aerolínea'])
+        valor_maxim = df2['Pasajeros en clase L'].idxmax()
+        print(df2.loc[valor_maxim, 'Aerolínea'])
 
         return(df1, df2)

@@ -36,7 +36,6 @@ def main():
           "⛥⛥⛥⛥\n")
     analisis.ValoresDescriptivos()
     analisis.identificarTendencias('DISTANCE')
-    analisis.encontrarTendencias()
 
     df1, df2 = analisis.imprimirInformes()
     print("\n⛥⛥⛥⛥"
@@ -51,8 +50,9 @@ def main():
           "⛥⛥⛥⛥\n")
     print(df2)
 
-    analisis.valoresAtipicos('Suma de pasajeros', df2)
-    analisis.cajaBigotes('Suma de Distancias', df1)
+    analisis.valoresAtipicos('Pasajeros en clase L', df2)
+    analisis.cajaBigotes('Número de Viajes', df1)
+    analisis.encontrarTendencias(df2)
 
 if __name__ == "__main__":
     main()
