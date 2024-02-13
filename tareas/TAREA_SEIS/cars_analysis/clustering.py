@@ -12,6 +12,7 @@ class Clustering ():
     def kmeans (self, columna1, columna2):
         X = self.datos.dataSet[[columna1, columna2]].values
 
+        self.elbow (X)
 
         # Especificaciones de gráficos con los puntos sin organizar
         plt.figure(figsize=(12, 5))
@@ -53,9 +54,27 @@ class Clustering ():
 
         # Mostrar loa gráficos
         plt.show()
+    
+    def elbow (self, X):
+        # Calcular la inercia de diferentes valores
+        inertias = []
+        for k in range(1, 11):
+            # Saca con Kmeans y prueba con números random
+            kmeans = KMeans(n_clusters=k, random_state=42)
+            # Ajusta
+            kmeans.fit(X)
+            # Agrega a la lista
+            inertias.append(kmeans.inertia_) # 11 elementos
+
+        # Grafico de linea según las inercias
+        plt.plot(range(1, 11), inertias, marker='o')
+        plt.title('Método del Codo')
+        plt.xlabel('Numero de Clusters (k)')
+        plt.ylabel('Inercia')
+        plt.show()
 
 
 cluster = Clustering ()
 #cluster.datos.dataSet = cluster.datos.dataSet.sort_values(by='year')
-cluster.kmeans ('selling_price', 'year')
+cluster.kmeans ('year','selling_price')
 # year,selling_price,km_driven

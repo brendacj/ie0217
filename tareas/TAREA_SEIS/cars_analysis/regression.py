@@ -34,8 +34,8 @@ class Regresiones ():
         plt.show()
 
     def regresionNoLineal(self, XX, yy, grado = 2):
-        X = self.datos.dataSet[[XX]]
-        y = self.datos.dataSet[yy]
+        X = self.datos.dataSet[XX].values.reshape(-1, 1)
+        y = self.datos.dataSet[yy].values
 
         X_train_nonlinear, X_test_nonlinear, y_train_nonlinear, y_test_nonlinear = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -67,6 +67,6 @@ class Regresiones ():
         print (f'R^2: {r2:.2f}')
 
 regresion = Regresiones ()
-regresion.datos.dataSet = regresion.datos.dataSet.sort_values(by='year')
+regresion.datos.dataSet = regresion.datos.dataSet.sort_values(by='selling_price')
 print(regresion.datos.dataSet.head())
-regresion.regresionNoLineal('year','selling_price')
+regresion.regresionNoLineal('year','selling_price', 5)
