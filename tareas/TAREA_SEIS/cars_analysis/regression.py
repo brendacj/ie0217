@@ -8,13 +8,12 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 class Regresiones ():
-    def __init__(self):
-        self.datos = ObtencionDatos()
-        self.datos.obtencionLimpieza()
+    def __init__(self, datos):
+        self.datos = datos
 
     def regresionLineal(self, XX, yy):
-        X = self.datos.dataSet[[XX]]  
-        y = self.datos.dataSet[yy]
+        X = self.datos[[XX]]  
+        y = self.datos[yy]
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -34,8 +33,8 @@ class Regresiones ():
         plt.show()
 
     def regresionNoLineal(self, XX, yy, grado = 2):
-        X = self.datos.dataSet[XX].values.reshape(-1, 1)
-        y = self.datos.dataSet[yy].values
+        X = self.datos[XX].values.reshape(-1, 1)
+        y = self.datos[yy].values
 
         X_train_nonlinear, X_test_nonlinear, y_train_nonlinear, y_test_nonlinear = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -65,8 +64,3 @@ class Regresiones ():
         print (f'MAE: {mae:.2f}')
         print (f'MSE: {mse:.2f}')
         print (f'R^2: {r2:.2f}')
-
-regresion = Regresiones ()
-regresion.datos.dataSet = regresion.datos.dataSet.sort_values(by='selling_price')
-print(regresion.datos.dataSet.head())
-regresion.regresionNoLineal('year','selling_price', 5)

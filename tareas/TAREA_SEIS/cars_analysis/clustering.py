@@ -6,12 +6,11 @@ from sklearn.metrics import silhouette_score
 
 
 class Clustering ():
-    def __init__(self):
-        self.datos = ObtencionDatos()
-        self.datos.obtencionLimpieza()
+    def __init__(self, datos):
+        self.datos = datos
 
-    def kmeans (self, columna1, columna2):
-        X = self.datos.dataSet[[columna1, columna2]].values
+    def kmeans (self, columna1, columna2, clusters):
+        X = self.datos[[columna1, columna2]].values
 
         # Especificaciones de gráficos con los puntos sin organizar
         plt.figure(figsize=(12, 5))
@@ -24,13 +23,14 @@ class Clustering ():
         plt.ylabel(columna2.replace('_', ' '))
 
 
-        kmeans = KMeans(n_clusters=3)
+        kmeans = KMeans(n_clusters=clusters)
         kmeans.fit(X)
         labels = kmeans.labels_
         centroids = kmeans.cluster_centers_
 
-        self.datos.dataSet['cluster'] = labels
-        print(self.datos.dataSet.head())
+        self.datos['cluster'] = labels
+
+        print(self.datos.head())
 
         #  Especificaciones del gráfico de puntos después de organizar
         plt.subplot(1, 2, 2)
@@ -44,8 +44,8 @@ class Clustering ():
         plt.scatter(centroids[:, 0], centroids[:, 1], c='black', marker='X', s=200,
             label= 'centroids')
         plt.title('Resultado del Clustering con K-Means')
-        plt.xlabel('Caracteristica 1')
-        plt.ylabel('Caracteristica 2')
+        plt.xlabel(columna1.replace('_', ' '))
+        plt.ylabel(columna2.replace('_', ' '))
         plt.legend()
 
         # Ajustar el diseño para evitar solapamientos
@@ -55,7 +55,7 @@ class Clustering ():
         plt.show()
     
     def elbow (self, columna1, columna2):
-        X = self.datos.dataSet[[columna1, columna2]].values
+        X = self.datos[[columna1, columna2]].values
         # Calcular la inercia de diferentes valores
         inertias = []
         for k in range(1, 11):
@@ -75,7 +75,7 @@ class Clustering ():
 
     def silhouette (self, columna1, columna2):
 
-        X = self.datos.dataSet[[columna1, columna2]].values
+        X = self.datos[[columna1, columna2]].values
 
        #Lista de siluetas
         silhouette_scores = []
@@ -92,10 +92,3 @@ class Clustering ():
         plt.xlabel('Número de Clusters (k)')
         plt.ylabel('Coeficiente de Silueta')
         plt.show() 
-
-
-cluster = Clustering ()
-#cluster.datos.dataSet = cluster.datos.dataSet.sort_values(by='year')
-cluster.silhouette ('year','selling_price')
-cluster.kmeans ('year','selling_price')
-# year,selling_price,km_driven
