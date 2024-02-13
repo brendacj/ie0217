@@ -50,8 +50,6 @@ class ObtencionDatos():
             self.dataSet[['year','selling_price','km_driven']] = self.dataSet[[
                 'year','selling_price','km_driven']].astype(float)
             
-            self.eliminar_atipicos('selling_price')
-            self.eliminar_atipicos('km_driven')
             
         except FileNotFoundError:
             # Manejo de errores en caso de que no encuentre el archivo
@@ -62,16 +60,3 @@ class ObtencionDatos():
                 f"Ocurrió un error inesperado durante la carga de datos: {e}")
             
         return self.dataSet
-    
-
-    def eliminar_atipicos(self, column_name, threshold=3):
-        # Calcular la media y la desviación estándar de la columna
-        mean = self.dataSet[column_name].mean()
-        std_dev = self.dataSet[column_name].std()
-
-        # Definir el criterio para identificar valores atípicos
-        lower_bound = mean - threshold * std_dev
-        upper_bound = mean + threshold * std_dev
-
-        # Filtrar el DataFrame para eliminar valores atípicos
-        self.dataSet = self.dataSet[(self.dataSet[column_name] > lower_bound) & (self.dataSet[column_name] < upper_bound)]

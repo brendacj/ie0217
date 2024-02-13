@@ -145,4 +145,87 @@
     - _DELETE_: Se utiliza para eliminar un recurso existente en el servidor. Cuando se realiza una solicitud DELETE, está indicando al servidor que elimine el recurso especificado en la solicitud.
 
 
+## Parte práctica: Interpretación de Resultados
+
+Para la interpretación de resultados se estarán analizando los diferentes gráficos y figuras generadas durante la ejecución y pruebas del programa.
+
+### Regresiones lineales
+
+Para esta parte, primero se analizará como varían los precios de los vehículos a lo largo de los años mediante la predicción a partir de las columnas "selling_price" y "year" con una regresión lineal, observando si existe alguna tendencia significativa o si el modelo se ajusta a la realidad de los datos.
+
+![Regresión Lineal Año contra Precio](linealYearVsPrice.png "Figura 1 - Regresión Lineal Año contra Precio ")
+
+En la Figura 1 se puede observar que entre más nuevo sea el carro mayor será su precio de venta, se puede confirmar este comportamiento con la línea que tendencia de la regresión, la cual tiende a subir o mostrar una inclinación hacia arriba, sin embargo no se trata exactamente de una relación lineal, a continuación se presentan sus medidas de eficiencia:
+
+- MAE: 285261.02
+- MSE: 310932051843.19
+- R^2: 0.15
+
+Como se puede observar, el MAE y MSE son muy altos, lo que da una idea de que el error de predicción del modelo es bastante grande, ahora bien, también esto se debe a que es una gran cantidad de datos, por lo que su sumatorias de errores serán valores elevados. Sin embargo, también está el dato del coeficiente de determinación, el cual se muestra en un 0.15, lo que es un valor bastante bajo sabiendo que entre más cerca de 1 se encuentre mejor es el modelo.
+
+También se analizó la distribución de los kilómetros recorridos por los vehículos y su relación con el añor del vehículo.
+
+![Regresión Lineal Kilometros contra año ](lineal.png "Figura 2 - Regresión Lineal Kilometros contra año ")
+
+En la figura se puede observar que la regresión lineal calculada en este caso tiene una tendencia a disminuir, es decir, que entre más nuevo sea el vehículo menos kilómetros recorridos va a tener, ahora bien este no se trata de un comportamiento completamente lineal, más bien se puede observar que los datos no se ajustan bien a la línea y que pareciera que muchos carros relativamente nuevos tienen muchos kilómetros recorridos.
+
+- MAE: 29096.50
+- MSE: 1576711150.88
+- R^2: 0.18
+
+Con los datos expuestos anteriormente se puede confirmar que no se trata de una relación lineal y que es un modelo no tan eficiente, ya que los datos de los errores medios absolutos y cuadráticos son muy elevados y además el R cuadrado es muy bajo. Este error se puede interpretar como que no necesariamente si el carro tiene más años va a tener más kilómetros recorridos, sino que existen otros factores que también influyen.
+
+### Regresiones no lineales
+
+Ahora para las regresiones no lineales se realizarán los mismos análisis anteriores pero con modelos de regresiones polinómicas, en este caso se realizaran con los valores medios de cada grupo de años y no con troos los valores para poder visualizar mejor la curva.
+
+![Regresión No Lineal Año contra Precio](nolienalYearVsPrice.png "Figura 3 - Regresión No Lineal Año contra Precio ")
+
+Como se puede observar en la Figura 3 la gráfica muestra una tendencia positiva que se ajusta a una regresión polinómica de grado dos. Su forma deja ver que existe una tendencia a que el precio de los vehículos aumente entre más nuevo sea el carro aunque hay valores que se salen de esta tendencia y tienen un mayor valor, aunque sean más viejos.
+
+- MAE: 65710.41
+- MSE: 9433015469.09
+- R^2: 0.90
+
+Como se puede observar en los valores de eficiencia, el R cuadrado está muy bien, ya que es cercano a 1, esto significa que se trata de una buena representación.
+
+![Regresión No Lineal Kilometros contra Precio ](nolinealYearVsKm.png "Figura 4 - Regresión No Lineal Kilometros contra Precio")
+
+En el caso de los kilómetros recorridos en función de los años, se puede observar una figura como un tipo de parábola, la regresión polinómica de grado tres describe correctamente los datos, mostrándose decreciente, entendiéndose que entre más nuevo sea el carro menor cantidad de kilómetros recorridos va a tener, lo cual tiene lógica, pero hay casos en los que no se cumple.
+
+- MAE: 6748.31
+- MSE: 64850749.53
+- R^2: 0.88
+
+En las medidas de eficiencia mostradas se puede observar que, aunque el valor del MAE y el MSE es elevado, el R cuadrado es cercano a 1, pero no tanto, por lo que se entiende que es una regresión que se ajusta bien, pero que algunos valores se salen de la regla, como se observó en la gráfica.
+
+
+### Clusterings K-Means
+
+Para la parte de Clusterings se utilizó el método K-Means según diferentes características. Para el primer caso se utilizan las características de año del vehículo y precio de venta con las columnas "selling_price" y "year" del dataFrame.
+
+![Número de clusters, silueta](silueta.png "Figura 5 - Número de clusters, silueta")
+
+Antes de realizar el ordenamiento con K-Means se usa el método de la silueta para visualizar cual es el número óptimo de clusters que se deben definir en el K-Means, en este caso, como se puede observar en la Figura 5, la silueta cambia su forma cuando está cercana al punto 3 del eje X, por lo que este será el número de clusters utilizado para el próximo K-Means.
+
+![Kmeans Años contra Precio](KmeansYearVsPrice.png "Figura 6 - Kmeans Años contra Precio")
+
+Según lo que se puede observar en la Figura 6, los valores de los clusters se organizan según el precio de venta, los grupos bien definidos son los precios bajos, precios medios y precios altos. Una caracteristica que se puede observar es que el gráfico scatter de puntos es muy similar antes y después de aplicar el K-Means, solo cambiando sus colores, esto es debido a que los valores ya estaban algo ordenados por su caracteristica general de ser más caros conforme menos años tengan, por lo que el método de ordenamiento no tuvo que hacer muchos cambios.
+
+Para el segundo análisis mediante K- Means se utilizaron las características de kilómetros recorridos y precio del vehículo, para encontrar el número ideal de clusters se utiliza el método del codo:
+
+![Número de clusters, codo](codo.png "Figura 7 - Número de clusters, codo")
+
+Se puede observar que el valor indicado de los clusters ronda aproximadamente el 2, por lo que este es el número que se utiliza para realizar el próximo K-Means.
+
+
+![Kmeans Kilometros contra Precio](KmeansKmVsPrice.png "Figura 8 - Kmeans Kilometros contra Precio")
+
+En la Figura 8 se puede observar que hay dos grupos bien definidos, como el K-Means pasado, este también está ordenado según el precio de los carros, por lo que el algoritmo no tuvo que hacer mucho, se pueden visualizar claramente los dos grupos formados, de carros baratos y carros caros. Algunos carros son más baratos entre mayor sea su número de kilómetros recorridos, pero realmente no es algo tan usual ya que al aparecer los carros de la actual base de datos con carros con no tantos kilómetros recorridos, por lo que se diferencian por su precio de venta. El grupo rojo se observa con una mayor densidad y el azul con menos carros, lo que quiere decir que hay menor carros caros.
+
+
+
+
+
+
 

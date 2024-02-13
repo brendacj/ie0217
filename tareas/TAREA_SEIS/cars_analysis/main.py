@@ -12,17 +12,19 @@ def main():
     regresion.datos = regresion.datos.sort_values(by='selling_price')
     regresion.regresionLineal('year','selling_price')
 
-    print("Regresión lineal precio de venta en función de los kilometros recorridos")
+    print("Regresión lineal kilometros recorridos en función del año del carro")
     regresion.datos = regresion.datos.sort_values(by='selling_price')
-    regresion.regresionLineal('km_driven','selling_price')
+    regresion.regresionLineal('year','km_driven')
 
     print("Regresión polinómica precio de venta en función del año del carro")
     regresion.datos = regresion.datos.sort_values(by='selling_price')
-    regresion.regresionNoLineal('year','selling_price', 5)
+    regresion.regresionNoLineal('year','selling_price', 2)
+    #regresion.regresionNoLineal('year','km_driven', 3)
 
     print("Regresión polinómica precio de venta en función de los kilometros recorridos")
-    regresion.datos = regresion.datos.sort_values(by='selling_price')
-    regresion.regresionNoLineal('km_driven','selling_price', 5)
+    regresion.datos = regresion.datos.sort_values(by='km_driven')
+    #regresion.regresionNoLineal('km_driven','selling_price', 4)
+    regresion.regresionNoLineal('year','km_driven', 3)
 
 
     cluster = Clustering (data)

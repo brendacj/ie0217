@@ -1,3 +1,10 @@
+"""
+Este software está sujeto a los términos y condiciones de la Licencia MIT.
+Entre otras cosas se establece que si se utiliza o distribuye partes
+sustanciales del programa, se deben incluir el aviso de derechos de autor
+y el aviso de permiso en tu distribución.
+"""
+
 from ObtenerData import ObtencionDatos
 import numpy as np
 import matplotlib.pyplot as plt
@@ -33,22 +40,38 @@ class Regresiones ():
         plt.show()
 
     def regresionNoLineal(self, XX, yy, grado = 2):
-        X = self.datos[XX].values.reshape(-1, 1)
-        y = self.datos[yy].values
+        #X = self.datos[XX].values.reshape(-1, 1)
+        #y = self.datos[yy].values
 
-        X_train_nonlinear, X_test_nonlinear, y_train_nonlinear, y_test_nonlinear = train_test_split(X, y, test_size=0.2, random_state=42)
+        datos = self.datos.groupby(XX)[yy].mean()
 
-        modelo_polinomico = make_pipeline(PolynomialFeatures(grado), LinearRegression())
+        X = datos.index.values.reshape(-1, 1)
+        y = datos.values.reshape(-1, 1)
+
+        #X = self.datos[XX].values.reshape(-1, 1)
+        #y = self.datos[yy].values.reshape(-1, 1)
+
+        #modelo_polinomico.fit(X, y)
+        #X_train_nonlinear, X_test_nonlinear, y_train_nonlinear, y_test_nonlinear = train_test_split(X, y, test_size=0.2, random_state=42)
+        polinomico = PolynomialFeatures(grado).fit_transform(X)
+        #modelo_polinomico.fit(X, y)
+        X_train_nonlinear, X_test_nonlinear, y_train_nonlinear, y_test_nonlinear = train_test_split(polinomico, y, test_size=0.5, random_state=121)
+        
+        #modelo_polinomico = make_pipeline(PolynomialFeatures(grado), LinearRegression())
+        modelo_polinomico = LinearRegression()
         modelo_polinomico.fit(X_train_nonlinear, y_train_nonlinear)
 
         #X_test = np.linspace(0, 2, 100).reshape(100, 1)
         y_pred = modelo_polinomico.predict(X_test_nonlinear)
+        #y_pred = modelo_polinomico.predict(polinomico)
 
         self.medirRendimiento(y_test_nonlinear, y_pred)
 
         plt.scatter(X, y)
-        plt.plot(X_test_nonlinear, y_pred, color = 'red',
-                label = f'Regresión Polinómica ({grado} grado)')
+        #plt.plot(X, y_pred, color = 'red', label = f'Regresión Polinómica ({grado} grado)')
+        sorted_index = np.argsort(X_test_nonlinear[:,1])
+        plt.plot(X_test_nonlinear[:,1][sorted_index], y_pred[sorted_index], color = 'red',
+               label = f'Regresión Polinómica ({grado} grado)')
         plt.title('Regresión no lineal (Polinomica): '+ XX.replace('_', ' ') + ' vs. '+ yy.replace('_', ' '))
         plt.xlabel(XX.replace('_', ' '))
         plt.ylabel(yy.replace('_', ' '))
