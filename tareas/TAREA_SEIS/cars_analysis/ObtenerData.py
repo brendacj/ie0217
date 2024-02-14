@@ -11,7 +11,7 @@ import pandas as pd
 
 class ObtencionDatos():
     """Clase para obtener y limpiar datos
-    de aerolíneas desde un archivo CSV."""
+    de los vehículos en un archivo CSV."""
 
     def __init__(self):
         """Inicializa la clase y define el
@@ -20,7 +20,9 @@ class ObtencionDatos():
         self.dataSet = pd.DataFrame()
 
     def obtencionLimpieza(self):
+        """Obtiene y limpia los datos del archivo CSV."""
         try:
+            # Autenticación y descarga de datos desde Kaggle
             api = KaggleApi()
 
             dataset_name = "akshaydattatraykhare/car-details-dataset"
@@ -30,27 +32,22 @@ class ObtencionDatos():
             api.dataset_download_files(dataset_name, path='./', unzip=True)
 
             """Obtiene y limpia los datos del archivo CSV."""
+
             # Leer un archivo separado por comas, se guarda en un dataFrame
             self.dataSet = pd.read_csv(self.archivo)
 
             # Eliminar las filas con valores nulos
             self.dataSet = self.dataSet.dropna()
 
-            # Eliminar columnas innecesarias
-            # Lista de nombres de las columnas a eliminar
-            #columnasEliminar = ['ORIGIN_AIRPORT_ID',
-            #                    'DEST_AIRPORT_ID', 'MONTH']
-            #self.aerolineas = self.aerolineas.drop(columnasEliminar, axis=1)
-
             # Asegurarse de que los tipos de la columnas sean str
-            self.dataSet[['name','fuel','seller_type','transmission','owner']] = self.dataSet[[
-                'name','fuel','seller_type','transmission','owner']].astype(str)
-            
+            self.dataSet[['name', 'fuel', 'seller_type']] = self.dataSet[[
+                'name', 'fuel', 'seller_type']].astype(str)
+
             # Asegurarse de que los tipos de la columnas sean float
-            self.dataSet[['year','selling_price','km_driven']] = self.dataSet[[
-                'year','selling_price','km_driven']].astype(float)
-            
-            
+            self.dataSet[['year', 'selling_price', 'km_driven'
+                          ]] = self.dataSet[['year', 'selling_price',
+                                             'km_driven']].astype(float)
+
         except FileNotFoundError:
             # Manejo de errores en caso de que no encuentre el archivo
             print("El archivo no se encontró. Verifique")
@@ -58,5 +55,5 @@ class ObtencionDatos():
             print(
                 # Maneja cualquier otro error
                 f"Ocurrió un error inesperado durante la carga de datos: {e}")
-            
-        return self.dataSet
+
+        return self.dataSet  # Retorna el dataSet

@@ -8,10 +8,31 @@
 
 - Las respuestas a las preguntas teóricas se encuentran más abajo en el README.md.
 
-- El análisis para la parte práctica 1 se encuentra más abajo en el README.md
+- El análisis para la parte práctica se encuentra más abajo en el README.md
+
+- IMPORTANTE PARA ESTE PROGRAMA: Debe asegurarse de tener el token de acceso generado en la página de Kaggle (archivo .json) dentro de la carpeta .kaggle de su computador personal, de otro modo no se podrá acceder a los datos.
+
+1. Acceda a la página de Kaggle con el link proporcionado en el enunciado de la tarea e inicie sesión.
+
+2. Toque el icono de su usuario y acceda a las configuraciones, una vez ahí escoga la opción de "Create New Token".
+
+3. Mueva el archivo json generado a la carpeta .kaggle dentro de c:\Users\Usuario.
+
+4. En su defecto, use el archivo llamado "kaggle.json" ubicado en el directorio TAREA_SEIS del actual repositorio y muevalo a la carpeta .kaggle dentro de c:\Users\Usuario.
 
 
 ### Ejecución
+
+Una vez dentro de la carpeta TAREA_SEIS, ejecute alguno de los siguientes comandos para para ejecutar el programa en Python 3:
+
+```
+make
+make run
+```
+
+### Uso del programa
+No se trata de un programa interactivo, por lo que al ejecutarlo se mostrarán las tablas y gráficos de los programas y finalizará la ejecución, solo es necesario observar las impresiones y revisar el análisis más abajo en el README.md.
+
 
 ## Parte teórica
 
