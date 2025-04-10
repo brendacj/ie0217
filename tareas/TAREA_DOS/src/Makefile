@@ -19,7 +19,7 @@ all: build run
 
 # Target para limpiar el directorio
 clean:
-	del $(TARGET) $(OBJECTS)
+	rm $(TARGET) $(OBJECTS)
 
 # Target para compilar
 build: $(OBJECTS)
